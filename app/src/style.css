@@ -1,6 +1,6 @@
 :root {
-  --light-mode-primary-color: #b6d7ec;
-  --dark-mode-primary-color: #1f2529;
+  --light: #b6d7ec;
+  --dark: #1f2529;
 }
 
 body, * {
@@ -10,15 +10,11 @@ body, * {
     font-size: 15px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.light {
+  background-color: var(--light);
 }
+
+.dark {
+  background-color: var(--dark);
+}
+
