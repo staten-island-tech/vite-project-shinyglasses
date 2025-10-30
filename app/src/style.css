@@ -18,3 +18,7 @@ body, * {
   background-color: var(--dark);
 }
 
+button {
+  
+  padding: 10px;
+}
