@@ -11,9 +11,5 @@
 - dark and light mode (maybe AN ANGRY dark and light mode if you neglect the pet??)
 - save files - store the pet data + default color scheme in local storage
 
-● Options for pets
-● Buttons or game to provide happiness, food etc.
-● Visual feedback elements
-● Thresholds for feedback (too hungry, sad etc.)
-● Local storage usage
-● Light mode/Dark Mode
+to do 
+- media query

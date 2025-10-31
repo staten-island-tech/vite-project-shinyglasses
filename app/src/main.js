@@ -1,18 +1,17 @@
 import './style.css'
 
-document.querySelector('#app').innerHTML = `
-`
 class SaveFiles {
-    showSaveFile() {
-        imgName = getPetImage(petStatus);
+    static showSaveFile() {
+        let pet = new Pet('johnny')
+        let imgName = pet.getPetImage();
         console.log(imgName);
-        html = `<div class='game'><h1>Parenthood the Game</h1><img class='pet' src='${imgName}'><button class='feed_pet'></button></div>`
+        let html = `<div class='game'><img class='pet' src='${imgName}'><button class='feed_pet'>Feed</button><button class='play'>Play with</button></div>`
         //add actual pet image later
-        container = document.querySelector('.container');
-        container.insertAdjacentHTML('afterbegin', html);
+        const container = document.querySelector('.container');
+        container.insertAdjacentHTML('beforeend', html);
     }
-    createSaveFile(name, pet) {
-        savefiles = document.querySelector('#savefiles');
+    static createSaveFile(name, pet) {
+        const savefiles = document.querySelector('#savefiles');
         savefiles.innerHTML = `<div class='savefile'> <p>Name: ${name}, pets: ${pet}</p>, 
         </div>`
         const userProfile = { 'name': name, 'pets': [pet], 'theme': 'light'};
@@ -29,9 +28,8 @@ class SaveFiles {
 }}
 
 function changeTheme() { 
-    btn = document.querySelector('.theme') //undefined for some reason
-    container = document.body;
-    console.log('changing theme');
+    const btn = document.querySelector('.theme') 
+    const container = document.body;
     btn.addEventListener('click', function() {
         if (container.classList.contains('light')) {
             container.classList.remove('light');
@@ -53,6 +51,7 @@ class Pet {
         this.currentHunger = 0
         this.currentSadness = 0;
         this.currentTiredness = 0;
+        this.status = 'happy';
     }
     increasePetHunger() {
          //every 15  sec the pet hunger decreases by 1 
@@ -86,7 +85,7 @@ class Pet {
         'sad': 'public/sad_dog.png',
         'happy': 'public/happy_dog.png'
     }
-    const imgName = array[petStatus]; //fixc later
+    const imgName = array[this.status]; 
     return imgName
 }}   
 
@@ -106,3 +105,4 @@ function createPet(name, hungerLevel, sadnessLevel, angerLevel) {
 
 changeTheme();
 const pet = new Pet('johnny');
+SaveFiles.showSaveFile();
