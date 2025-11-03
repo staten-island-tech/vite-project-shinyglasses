@@ -13,3 +13,6 @@
 
 to do 
 - media query
+- the themes
+- feed with and play buttons
+- pet hungry every 15 sec feature

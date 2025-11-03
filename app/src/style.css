@@ -1,12 +1,26 @@
 :root {
-  --light: #b6d7ec;
-  --dark: #1f2529;
+  --light-primary: #ddf0fc;
+  --light-secondary: #1f2529;
+  --light-text: #1f2529;
+
+  --dark-primary: #2b3236;
+  --dark-secondary: #cde2f0;
+  --dark-text: #cde2f0;
+
+  --strawberry-primary: #ff9d8b;
+  --strawberry-secondary: #07410e; 
+  --strawberry-text: #293126;
+  
+  --peaches-primary: #f6d992;
+  --peaches-secondary: #174708;
+  --peaches-text:  #333333;
   font-family: "Alan Sans";
 }
 
 .title {
   margin: 2%;
   text-align: center;
+  font-size: 2.986rem;
 }
 
 body, * {
@@ -14,19 +28,36 @@ body, * {
     padding: 0;
     margin: 0;
     font-size: 15px;
+    background-color: var(--primary);
+    color: var(--text);
 }
 
 .light {
-  background-color: var(--light);
+  --primary: var(--light-primary);
+  --secondary: var(--light-secondary);
+  --text: var(--light-text);
 }
 
 .dark {
-  background-color: var(--dark);
+  --primary: var(--dark-primary);
+  --secondary: var(--dark-secondary);
+  --text: var(--dark-text);
+}
+.strawberry {
+  --primary: var(--strawberry-primary);
+  --secondary: var(--strawberry-secondary);
+  --text: var(--strawberry-text);
+}
+.peaches {
+  --primary: var(--peaches-primary);
+  --secondary: var(--peaches-secondary);
+  --text: var(--peaches-text);
 }
 
 button {
-  padding: 12px 8px;
-  color: var(--dark);
+  padding: 0;
+  background: none;
+  color: var(--text);
   border: 0px;
   border-radius: 8px;
 }
@@ -35,11 +66,58 @@ button:hover {
 
 }
 .game {
-  border: 2px solid #1f2529;
+  border: 2px solid var(--secondary);
   margin: 0 auto;
-  width: 40%;
-  height: 60%;
+  width: 50%;
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+}
+.pet__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+.pet__status {
+  display: flex;
+  gap: 9%;
+  white-space: nowrap;
+}
+.pet__bottom {
+  display: flex;
+  white-space: none;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.pet__buttons {
+  display: flex;
+  gap: 10px; 
+  /* normally id use % but that moves the 2nd button out of the container */
+  /* % keeps the 1st button where it is and moves the 2nd */ 
+  white-space: nowrap;
 }
 .pet {
   margin: auto;
+}
+
+.themes {
+  display: flex;
+  align-items: center;
+}
+
+.theme__options {
+  display: flex;
+  justify-content: center; 
+  gap: 1%;              
+  flex-grow: 1;
+  width: 100%;
+}
+.themes h2 {
+  font-size: 2.488rem;
+  margin-left: 1%;
+  font-weight: 300;
+  position: absolute;
 }

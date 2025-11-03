@@ -1,23 +1,17 @@
 import './style.css'
 
 class SaveFiles {
-    static showSaveFile() {
-        let pet = new Pet('johnny')
-        let imgName = pet.getPetImage();
-        console.log(imgName);
-        let html = `<div class='game'><img class='pet' src='${imgName}'><button class='feed_pet'>Feed</button><button class='play'>Play with</button></div>`
-        //add actual pet image later
-        const container = document.querySelector('.container');
-        container.insertAdjacentHTML('beforeend', html);
-    }
     static createSaveFile(name, pet) {
         const savefiles = document.querySelector('#savefiles');
         savefiles.innerHTML = `<div class='savefile'> <p>Name: ${name}, pets: ${pet}</p>, 
         </div>`
         const userProfile = { 'name': name, 'pets': [pet], 'theme': 'light'};
         console.log(userProfile)
-        localStorage.setItem('userProfile', JSON.stringify(userProfile));
-}
+        localStorage.setItem('userProfile', JSON.stringify(userProfile)); 
+    }
+    static changeSaveFile() {
+
+    }
 
  accessSaveFile() {
     const storedUserProfile = localStorage.getItem('userProfile');
@@ -87,7 +81,31 @@ class Pet {
     }
     const imgName = array[this.status]; 
     return imgName
-}}   
+    }
+    showPet() {
+        let pet = new Pet('johnny')
+        let imgName = pet.getPetImage();
+        let html = `<div class='game'>
+        <div class='pet__container'> 
+            <img class='pet' src='${imgName}'>
+            <div class='pet__bottom'>
+            <div class='pet__status'>
+                <h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
+                <h3>Sadness: ${this.currentSadness}/${this.maxSadnessLevel}</h3>
+                <h3>Tiredness: ${this.currentTiredness}/${this.maxTirednessLevel}</h3>
+            </div>
+            <div class='pet__buttons'>
+                <button class='feed_pet'>Feed</button><button class='play'>Play with</button>
+            </div>
+            </div>
+        </div>
+        
+        </div>`
+        
+        const container = document.querySelector('.container');
+        container.insertAdjacentHTML('beforeend', html);
+    }
+}   
 
 function createPet(name, hungerLevel, sadnessLevel, angerLevel) {
     //hungry, sad, angry, name
@@ -103,6 +121,16 @@ function createPet(name, hungerLevel, sadnessLevel, angerLevel) {
     return pet
 }
 
+function themeButtons() {
+    const btns = document.querySelectorAll('.theme');
+    btns.forEach(btn => btn.addEventListener('click', function(event) {
+        const theme = event.target.textContent.toLowerCase();
+        document.body.classList.forEach(cssClass => document.body.classList.remove(cssClass))
+        document.body.classList.add(theme);
+        console.log(document.body.classList)
+    }))
+}
 changeTheme();
+themeButtons();
 const pet = new Pet('johnny');
-SaveFiles.showSaveFile();
+pet.showPet()
