@@ -63,10 +63,12 @@ button {
 }
 
 button:hover {
-
+  transform: scale(1.2);
+  box-shadow: 0 0 20px var();
 }
 .game {
-  border: 2px solid var(--secondary);
+  border: 4px solid var(--secondary);
+  border-radius: 8px;
   margin: 0 auto;
   width: 50%;
   height: 500px;
@@ -98,6 +100,7 @@ button:hover {
   /* normally id use % but that moves the 2nd button out of the container */
   /* % keeps the 1st button where it is and moves the 2nd */ 
   white-space: nowrap;
+  margin-right: 5px;
 }
 .pet {
   margin: auto;
@@ -120,4 +123,29 @@ button:hover {
   margin-left: 1%;
   font-weight: 300;
   position: absolute;
+}
+@media screen and (max-width: 600px) {
+  .game {
+    width: 80%;
+  }
+  .pet__bottom {
+    width: 100px !important;
+  }
+  .pet__status {
+    gap: 2%;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .game {
+    width: 90%;
+  }
+  .pet__bottom {
+    width: 100px !important;
+  }
+  .pet__status {
+    gap: 2%;
+    width: 100px;
+  }
 }

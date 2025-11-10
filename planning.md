@@ -16,3 +16,6 @@ to do
 - the themes
 - feed with and play buttons
 - pet hungry every 15 sec feature
+- if have extra time make the themes a dropdown instead
+- add shop drop down
+- if have extra time, change theme to drop down

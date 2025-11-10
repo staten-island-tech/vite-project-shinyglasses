@@ -46,14 +46,23 @@ class Pet {
         this.currentSadness = 0;
         this.currentTiredness = 0;
         this.status = 'happy';
+        let self = this
     }
     increasePetHunger() {
-         //every 15  sec the pet hunger decreases by 1 
-        const interval = setInterval(this.currentHunger += 1/this.maxHungerLevel, 15000); // 15000 milliseconds = 15 seconds
-        //prob need something like lambda for the increasepethuger
+        setInterval(function() {
+            self.currentHunger += 1;
+            console.log(self.currentHunger);
+            }   
+            , 2000); 
+            //in ms
     }
+    //this prob gets messed up bc the this in set interval isnt referring to the obj this
     decreasePetHunger() {
-        this.currentHunger -= 1/this.maxHungerLevel;
+        const btn = document.querySelector('.feed_pet');
+        btn.addEventListener('click', function() {
+            self.currentHunger -= 1;
+            console.log(self.currentHunger);
+        })
     }
     increasePetTiredness() {
 
@@ -74,13 +83,21 @@ class Pet {
     //if i add pets besides dogs i need to change 
     // the status_dog 
     const array = {
-        'tired': 'public/tired_dog.png',
-        'joyful': 'public/joyful_dog.png',
-        'sad': 'public/sad_dog.png',
-        'happy': 'public/happy_dog.png'
+        'tired': 'tired_dog.png',
+        'joyful': 'joyful_dog.png',
+        'sad': 'sad_dog.png',
+        'happy': 'happy_dog.png'
     }
+
     const imgName = array[this.status]; 
     return imgName
+    }
+    updatePetStatus() {
+        const container = document.querySelector('.pet__status');
+        container.innerHTML = '';
+        container.insertAdjacentHTML(`<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
+                <h3>Sadness: ${this.currentSadness}/${this.maxSadnessLevel}</h3>
+                <h3>Tiredness: ${this.currentTiredness}/${this.maxTirednessLevel}</h3>`);
     }
     showPet() {
         let pet = new Pet('johnny')
@@ -98,16 +115,14 @@ class Pet {
                 <button class='feed_pet'>Feed</button><button class='play'>Play with</button>
             </div>
             </div>
-        </div>
-        
+        </div>    
         </div>`
-        
         const container = document.querySelector('.container');
         container.insertAdjacentHTML('beforeend', html);
     }
 }   
 
-function createPet(name, hungerLevel, sadnessLevel, angerLevel) {
+/* function createPet(name, hungerLevel, sadnessLevel, angerLevel) {
     //hungry, sad, angry, name
     const maxHungerLevel = 10;
     const maxSadnessLevel = 10;
@@ -119,7 +134,7 @@ function createPet(name, hungerLevel, sadnessLevel, angerLevel) {
         'angerLevel': angerLevel/maxAngerLevel
     }
     return pet
-}
+} */
 
 function themeButtons() {
     const btns = document.querySelectorAll('.theme');
@@ -133,4 +148,6 @@ function themeButtons() {
 changeTheme();
 themeButtons();
 const pet = new Pet('johnny');
-pet.showPet()
+pet.showPet();
+pet.increasePetHunger();
+pet.decreasePetHunger();
