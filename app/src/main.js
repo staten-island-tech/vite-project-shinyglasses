@@ -46,11 +46,13 @@ class Pet {
         this.currentSadness = 0;
         this.currentTiredness = 0;
         this.status = 'happy';
-        let self = this
+    
     }
     increasePetHunger() {
+        let self = this
         setInterval(function() {
             self.currentHunger += 1;
+            self.updatePetStatus()
             console.log(self.currentHunger);
             }   
             , 2000); 
@@ -58,10 +60,41 @@ class Pet {
     }
     //this prob gets messed up bc the this in set interval isnt referring to the obj this
     decreasePetHunger() {
+        let self = this;
         const btn = document.querySelector('.feed_pet');
         btn.addEventListener('click', function() {
+            const container = document.querySelector('.game')
+            const petImg = self.getPetImage()
+            container.insertAdjacentHTML('beforeend', 
+                `<div class=feed>
+                    <button class='leave'>X</button>   
+                    <img class='feed__pet' src=${petImg}>
+                    <div class='move'>
+                        <button id='up'>Up</button>
+                        <button id='down'>Down</button>
+                        <button id='left'>Left</button>
+                        <button id='right'>Right</button>
+                    </div>
+                </div>`)
             self.currentHunger -= 1;
-            console.log(self.currentHunger);
+            self.updatePetStatus();
+            self.petMovement();
+        })
+        }
+    petMovement() {
+        const btnContainer = document.querySelector('.move')
+        btnContainer.addEventListener('click', function(event) {
+            const btn = event.target.textContent;
+            const pet = document.querySelector('.feed__pet')
+            if (btn === 'Up') {
+                pet.style.marginTop += '20%';
+            } else if (btn === 'Down') {
+                pet.style.marginBottom += '20%';
+            } else if (btn === 'Right') {
+                pet.style.marginRight += '20%';
+            } else if (btn === 'Left') {
+                pet.style.marginLeft += '20%';
+            }
         })
     }
     increasePetTiredness() {
@@ -95,7 +128,7 @@ class Pet {
     updatePetStatus() {
         const container = document.querySelector('.pet__status');
         container.innerHTML = '';
-        container.insertAdjacentHTML(`<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
+        container.insertAdjacentHTML('beforeend', `<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
                 <h3>Sadness: ${this.currentSadness}/${this.maxSadnessLevel}</h3>
                 <h3>Tiredness: ${this.currentTiredness}/${this.maxTirednessLevel}</h3>`);
     }
@@ -122,19 +155,6 @@ class Pet {
     }
 }   
 
-/* function createPet(name, hungerLevel, sadnessLevel, angerLevel) {
-    //hungry, sad, angry, name
-    const maxHungerLevel = 10;
-    const maxSadnessLevel = 10;
-    const maxAngerLevel = 10; 
-    const pet = {
-        'name': name, 
-        'hungerLevel': hungerLevel/maxHungerLevel,
-        'sadnessLevel': sadnessLevel/maxSadnessLevel,
-        'angerLevel': angerLevel/maxAngerLevel
-    }
-    return pet
-} */
 
 function themeButtons() {
     const btns = document.querySelectorAll('.theme');

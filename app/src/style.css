@@ -124,6 +124,43 @@ button:hover {
   font-weight: 300;
   position: absolute;
 }
+
+.feed {
+  position: fixed;
+  z-index: 10;
+  top: 50%;                      
+  left: 50%;                     
+  transform: translate(-50%, -50%); 
+  width: 60%;
+  height: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  background-color: #333333;
+  
+}
+.leave {
+  background-color: var(--secondary);
+  width: 5%;
+  height: 5%;
+  color: var(--text);
+  margin-left: 95%;
+}
+
+.move {
+  background-color: var(--secondary);
+  width: 100%;
+  height: 20%;
+}
+.move button {
+  background-color: #174708;
+  width: 20%;
+  height: 80%;
+}
+.feed__pet {
+  
+}
 @media screen and (max-width: 600px) {
   .game {
     width: 80%;
