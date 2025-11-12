@@ -2,7 +2,7 @@
   --light-primary: #ddf0fc;
   --light-secondary: #1f2529;
   --light-text: #1f2529;
-
+  --light-button:  #3b4449;
   --dark-primary: #2b3236;
   --dark-secondary: #cde2f0;
   --dark-text: #cde2f0;
@@ -12,7 +12,7 @@
   --strawberry-text: #293126;
   
   --peaches-primary: #f6d992;
-  --peaches-secondary: #174708;
+  --peaches-secondary: #978c2a;
   --peaches-text:  #333333;
   font-family: "Alan Sans";
 }
@@ -55,16 +55,16 @@ body, * {
 }
 
 button {
-  padding: 0;
-  background: none;
-  color: var(--text);
+  padding: 12px 20px;
+  background: var(--secondary);
+  color: var(--primary);
   border: 0px;
   border-radius: 8px;
 }
 
 button:hover {
   transform: scale(1.2);
-  box-shadow: 0 0 20px var();
+  box-shadow: 0 0 20px var(--secondary);
 }
 .game {
   border: 4px solid var(--secondary);
@@ -137,7 +137,8 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  background-color: #333333;
+  border: 20px solid var(--secondary);
+
   
 }
 .leave {
@@ -154,9 +155,10 @@ button:hover {
   height: 20%;
 }
 .move button {
-  background-color: #174708;
+  border: 5px solid var(--secondary);
   width: 20%;
   height: 80%;
+  background: 0;
 }
 .feed__pet {
   
