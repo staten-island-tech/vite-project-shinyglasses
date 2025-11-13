@@ -19,3 +19,4 @@ to do
 - if have extra time make the themes a dropdown instead
 - add shop drop down
 - if have extra time, change theme to drop down
+- game = no internet dino game

@@ -2,18 +2,22 @@
   --light-primary: #ddf0fc;
   --light-secondary: #1f2529;
   --light-text: #1f2529;
-  --light-button:  #3b4449;
+  --light-button:  #8ca6b9;
+
   --dark-primary: #2b3236;
-  --dark-secondary: #cde2f0;
+  --dark-secondary: #beceda;
   --dark-text: #cde2f0;
+  --dark-button: #40474d;
 
   --strawberry-primary: #ff9d8b;
   --strawberry-secondary: #07410e; 
   --strawberry-text: #293126;
+  --strawberry-button: #e6573e;
   
   --peaches-primary: #f6d992;
   --peaches-secondary: #978c2a;
   --peaches-text:  #333333;
+  --peaches-button: #f0ae4c;
   font-family: "Alan Sans";
 }
 
@@ -36,29 +40,32 @@ body, * {
   --primary: var(--light-primary);
   --secondary: var(--light-secondary);
   --text: var(--light-text);
+  --button: var(--light-button);
 }
 
 .dark {
   --primary: var(--dark-primary);
   --secondary: var(--dark-secondary);
   --text: var(--dark-text);
+  --button: var(--dark-button);
 }
 .strawberry {
   --primary: var(--strawberry-primary);
   --secondary: var(--strawberry-secondary);
   --text: var(--strawberry-text);
+  --button: var(--strawberry-button);
 }
 .peaches {
   --primary: var(--peaches-primary);
   --secondary: var(--peaches-secondary);
   --text: var(--peaches-text);
+  --button: var(--peaches-button);
 }
 
 button {
   padding: 12px 20px;
-  background: var(--secondary);
-  color: var(--primary);
-  border: 0px;
+  background: var(--button);
+  color: var(--text);
   border-radius: 8px;
 }
 
@@ -150,7 +157,7 @@ button:hover {
 }
 
 .move {
-  background-color: var(--secondary);
+  background-color: var(--button);
   width: 100%;
   height: 20%;
 }
@@ -162,6 +169,10 @@ button:hover {
 }
 .feed__pet {
   
+}
+.food {
+  width: 5%;
+  position: absolute;
 }
 @media screen and (max-width: 600px) {
   .game {
