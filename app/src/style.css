@@ -149,9 +149,9 @@ button:hover {
   
 }
 .leave {
-  background-color: var(--secondary);
+  background-color: var(--button);
   width: 5%;
-  height: 5%;
+  height: 8%;
   color: var(--text);
   margin-left: 95%;
 }
@@ -168,7 +168,7 @@ button:hover {
   background: 0;
 }
 .feed__pet {
-  
+  position: absolute;
 }
 .food {
   width: 5%;

@@ -40,10 +40,10 @@ class Pet {
     constructor(name) {
         this.name = name;
         this.maxHungerLevel = 10;
-        this.maxSadnessLevel = 10;
+        this.maxAffectionLevel = 10;
         this.maxHealthLevel = 10; 
         this.currentHunger = 10;
-        this.currentSadness = 0;
+        this.currentAffection = 10;
         this.currentHealth = 10;
         this.status = 'happy';
     
@@ -66,6 +66,7 @@ class Pet {
         btn.addEventListener('click', function() {
             const container = document.querySelector('.game')
             const petImg = self.getPetImage()
+            console.log(self.currentHunger)
             container.insertAdjacentHTML('beforeend', 
                 `<div class=feed>
                     <button class='leave'>X</button>   
@@ -85,22 +86,32 @@ class Pet {
         }
     petMovement() {
         const btnContainer = document.querySelector('.move')
+        let up = 0;
+        let down = 0;
+        let right = 0;
+        let left = 0;
+        let speed = 100;
+
         btnContainer.addEventListener('click', function(event) {
             const btn = event.target.textContent;
             const pet = document.querySelector('.feed__pet')
             if (btn === 'Up') {
-                pet.style.marginBottom += '20%';
+                up += 0.1;
+                pet.style.bottom = `${up * 100}%`;
             } else if (btn === 'Down') {
-                pet.style.marginTop += '20%';
+                down += 0.1;
+                pet.style.top =`${down * 100}%`;
             } else if (btn === 'Right') {
-                pet.style.marginLeft += '20%';
+                right += 0.1;
+                pet.style.left = `${left * 100}%`;
             } else if (btn === 'Left') {
-                pet.style.marginRight += '20%';
+                left += 0.1;
+                pet.style.right = `${right* 100}%`;
             }
+
         })
     }
     decreasePetHealth() {
-        console.log('ryb')
         let self = this;
         setInterval(function() {
             if (self.currentHunger === 0) {
@@ -109,18 +120,19 @@ class Pet {
             }
         }, 2000) }
         
-    increasePetSadness() {
+    increasePetAffection() {
 
     }
-    decreasePetSadness() {
+    decreasePetAffection() {
         
     }
     getPetImage() {
     //if i add pets besides dogs i need to change 
     // the status_dog 
-    if (this.currentHunger > 5 || this.currentHealth < 5) {
+    if (this.currentHunger < 5 || this.currentHealth < 5) {
         this.status = 'hurt'
     } 
+    
     const array = {
         'hurt': 'hurt_dog.png',
         'joyful': 'joyful_dog.png',
@@ -129,6 +141,7 @@ class Pet {
     }
 
     const imgName = array[this.status]; 
+    console.log(imgName)
     return imgName
     }
     updatePetStatus() {
@@ -136,7 +149,7 @@ class Pet {
         const container = document.querySelector('.pet__status');
         container.innerHTML = '';
         container.insertAdjacentHTML('beforeend', `<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
-                <h3>Sadness: ${this.currentSadness}/${this.maxSadnessLevel}</h3>
+                <h3>Affection: ${this.currentAffection}/${this.maxAffectionLevel}</h3>
                 <h3>Health: ${this.currentHealth}/${this.maxHealthLevel}</h3>
               `);
         }
@@ -149,7 +162,7 @@ class Pet {
             <div class='pet__bottom'>
             <div class='pet__status'>
                 <h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
-                <h3>Sadness: ${this.currentSadness}/${this.maxSadnessLevel}</h3>
+                <h3>a: ${this.currenta}/${this.maxaLevel}</h3>
                 <h3>Health: ${this.currentHealth}/${this.maxHealthLevel}</h3>
             </div>
             <div class='pet__buttons'>
