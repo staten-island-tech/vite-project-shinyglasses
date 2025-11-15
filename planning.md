@@ -21,3 +21,4 @@ to do
 - if have extra time, change theme to drop down
 - game = no internet dino gam
 - weird increments that the pet moves in with the name
+- perfect pet collisions (rn html = rect so its messy)

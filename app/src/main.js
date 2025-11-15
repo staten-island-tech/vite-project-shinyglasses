@@ -86,30 +86,29 @@ class Pet {
         }
     petMovement() {
         const btnContainer = document.querySelector('.move')
-        let up = 0;
-        let down = 0;
-        let right = 0;
-        let left = 0;
-        let speed = 100;
+        const pet = document.querySelector('.feed__pet')
+        const food = document.querySelector('.food')
+        let x = pet.offsetLeft;
+        let y = pet.offsetTop;    
+        let speed = 5;
 
         btnContainer.addEventListener('click', function(event) {
             const btn = event.target.textContent;
-            const pet = document.querySelector('.feed__pet')
+            
             if (btn === 'Up') {
-                up += 0.1;
-                pet.style.bottom = `${up * 100}%`;
+                y -= speed;
             } else if (btn === 'Down') {
-                down += 0.1;
-                pet.style.top =`${down * 100}%`;
+                y += speed;
             } else if (btn === 'Right') {
-                right += 0.1;
-                pet.style.left = `${left * 100}%`;
+                x += speed;
             } else if (btn === 'Left') {
-                left += 0.1;
-                pet.style.right = `${right* 100}%`;
+                x -= speed;
             }
-
+            pet.style.top = `${y}px`;
+            pet.style.left = `${x}px`;
+            checkCollision(pet, food)
         })
+        
     }
     decreasePetHealth() {
         let self = this;
@@ -176,7 +175,18 @@ class Pet {
     }
 }   
 
-
+function checkCollision(rect1, rect2) {
+  
+  if (rect1.x < rect2.x + rect2.width &&
+      rect1.x + rect1.width > rect2.x &&
+      rect1.y < rect2.y + rect2.height &&
+      rect1.y + rect1.height > rect2.y) {
+    // If all conditions are met, the rectangles are colliding
+    console.log('true')
+    return true;
+  }
+  return false;
+}
 function themeButtons() {
     const btns = document.querySelectorAll('.theme');
     btns.forEach(btn => btn.addEventListener('click', function(event) {
