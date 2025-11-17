@@ -153,17 +153,20 @@ class Pet {
               `);
         }
     showPet() {
-        let pet = new Pet('johnny')
+        let pet = new Pet('Johnny')
         let imgName = pet.getPetImage();
         let html = `<div class='game'>
         <div class='pet__container'> 
+        <h2 class='name'>${this.name}</h2>
             <img class='pet' src='${imgName}'>
-            <div class='pet__bottom'>
             <div class='pet__status'>
-                <h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
-                <h3>a: ${this.currenta}/${this.maxaLevel}</h3>
-                <h3>Health: ${this.currentHealth}/${this.maxHealthLevel}</h3>
+                <h3>Hunger: <b>${this.currentHunger}</b>/${this.maxHungerLevel} </h3>
+                <h3>Affection: <b> ${this.currentAffection} </b>/${this.maxAffectionLevel}</h3>
+                <h3>Health: <b>${this.currentHealth} </b>/${this.maxHealthLevel}</h3>
             </div>
+            
+            <div class='pet__bottom'>
+            
             <div class='pet__buttons'>
                 <button class='feed_pet'>Feed</button><button class='play'>Play with</button>
             </div>

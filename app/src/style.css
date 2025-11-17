@@ -2,7 +2,7 @@
   --light-primary: rgb(221, 240, 252);
   --light-secondary: rgb(31, 37, 41);
   --light-text: rgb(31, 37, 41);
-  --light-button: rgb(140, 166, 185);
+  --light-button: rgb(0, 149, 255);
 
   --dark-primary: rgb(26, 32, 44);
   --dark-secondary: rgb(113, 128, 150);
@@ -68,6 +68,7 @@ button {
   padding: 12px 20px;
   color: var(--text);
   border-radius: 8px;
+  background-color: var(--button);
 }
 
 button:hover {
@@ -78,8 +79,8 @@ button:hover {
   border: 4px solid var(--secondary);
   border-radius: 12px;
   margin: 0 auto;
-  width: 50%;
-  height: 500px;
+  width: 15%;
+  height: 300px;
   display: flex;
   justify-content: space-between;
   margin-top: 2%;
@@ -157,6 +158,8 @@ button:hover {
   height: 8%;
   color: var(--text);
   margin-left: 95%;
+  border-style: solid;
+  border-width: 0;
 }
 
 .move {
@@ -176,6 +179,10 @@ button:hover {
 .food {
   width: 5%;
   position: absolute;
+}
+.name {
+  font-size: 2.986rem;
+  text-align: center;
 }
 @media screen and (max-width: 600px) {
   .game {
