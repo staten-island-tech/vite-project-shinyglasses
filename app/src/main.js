@@ -56,8 +56,16 @@ class Pet {
                 self.updatePetStatus();
             }
             }   
-            , 200); 
+            , 1000); 
             //in ms
+    }
+    getRandomFoodPosition() {
+        //need to get food box highest n lowest x and y
+        const container = document.querySelector('.food')
+        while (!checkCollision(container, ))
+        //when the coords arent in the container keep goinf until it is
+        let foodX = Math.random() * 100
+        let foodY = Math.random() * 100
     }
     //this prob gets messed up bc the this in set interval isnt referring to the obj this
     increasePetHunger() {
@@ -106,7 +114,9 @@ class Pet {
             }
             pet.style.top = `${y}px`;
             pet.style.left = `${x}px`;
-            checkCollision(pet, food)
+            if (checkCollision(pet, food)) {
+                this.currentHunger++;
+            }
         })
         
     }
@@ -128,9 +138,6 @@ class Pet {
     getPetImage() {
     //if i add pets besides dogs i need to change 
     // the status_dog 
-    if (this.currentHunger < 5 || this.currentHealth < 5) {
-        this.status = 'hurt'
-    } 
     
     const array = {
         'hurt': 'hurt_dog.png',
@@ -144,7 +151,15 @@ class Pet {
     return imgName
     }
     updatePetStatus() {
-        
+        const pet = document.querySelector('.pet')
+        if (this.currentHealth < 5) {
+            this.status = 'sad'
+            pet.src = 'sad_dog.png'
+        }
+        else if (this.currentHunger < 5) {
+            this.status = 'hurt'
+            pet.src = 'hurt_dog.png'
+        }
         const container = document.querySelector('.pet__status');
         container.innerHTML = '';
         container.insertAdjacentHTML('beforeend', `<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
@@ -159,14 +174,12 @@ class Pet {
         <div class='pet__container'> 
         <h2 class='name'>${this.name}</h2>
             <img class='pet' src='${imgName}'>
+            <div class='pet__bottom'>
             <div class='pet__status'>
                 <h3>Hunger: <b>${this.currentHunger}</b>/${this.maxHungerLevel} </h3>
                 <h3>Affection: <b> ${this.currentAffection} </b>/${this.maxAffectionLevel}</h3>
                 <h3>Health: <b>${this.currentHealth} </b>/${this.maxHealthLevel}</h3>
             </div>
-            
-            <div class='pet__bottom'>
-            
             <div class='pet__buttons'>
                 <button class='feed_pet'>Feed</button><button class='play'>Play with</button>
             </div>
@@ -184,7 +197,7 @@ function checkCollision(rect1, rect2) {
       rect1.x + rect1.width > rect2.x &&
       rect1.y < rect2.y + rect2.height &&
       rect1.y + rect1.height > rect2.y) {
-    // If all conditions are met, the rectangles are colliding
+
     console.log('true')
     return true;
   }
