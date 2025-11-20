@@ -60,12 +60,27 @@ class Pet {
             //in ms
     }
     getRandomFoodPosition() {
-        //need to get food box highest n lowest x and y
-        const container = document.querySelector('.food')
-        while (!checkCollision(container, ))
-        //when the coords arent in the container keep goinf until it is
-        let foodX = Math.random() * 100
-        let foodY = Math.random() * 100
+
+        const container = document.querySelector(".feed");
+        const movement = document.querySelector('.move')
+        if (container) {
+          let containerCoords = container.getBoundingClientRect();
+          let movementCoords = movement.getBoundingClientRect();
+          console.log(containerCoords);
+          const yMin = containerCoords.bottom - movementCoords.bottom;
+          const yMax = containerCoords.top;
+          const xMax = containerCoords.right;
+          const xMin = containerCoords.left;
+          //i need to exclude the bottom bar
+          let x = Math.floor(Math.random() * (xMax - xMin + 1));
+          let y = Math.floor(Math.random() * (yMax - yMin + 1)) + yMin;
+          console.log(x);
+          container.insertAdjacentHTML('afterbegin', `<img class='food' src='food.png'>`)
+        const food = document.querySelector('.food');
+        food.style.top = `${y}px`
+        food.style.left = `${x}px`
+        }
+        
     }
     //this prob gets messed up bc the this in set interval isnt referring to the obj this
     increasePetHunger() {
@@ -77,9 +92,11 @@ class Pet {
             console.log(self.currentHunger)
             container.insertAdjacentHTML('beforeend', 
                 `<div class=feed>
+                    
                     <button class='leave'>X</button>   
                     <img class='feed__pet' src=${petImg}>
                     <img class='food' src='food.png'>
+                    
                     <div class='move'>
                         <button id='up'>Up</button>
                         <button id='down'>Down</button>
@@ -87,6 +104,7 @@ class Pet {
                         <button id='right'>Right</button>
                     </div>
                 </div>`)
+            self.getRandomFoodPosition();
             self.currentHunger -= 1;
             self.updatePetStatus();
             self.petMovement();
@@ -212,6 +230,13 @@ function themeButtons() {
         console.log(document.body.classList)
     }))
 }
+
+function shop() {
+    const btn = document.querySelector('.shop')
+    btn.addEventListener('click', function() {
+        const container = 
+    })
+}
 changeTheme();
 themeButtons();
 const pet = new Pet('johnny');
@@ -219,3 +244,4 @@ pet.showPet();
 pet.increasePetHunger();
 pet.decreasePetHunger();
 pet.decreasePetHealth();
+pet.getRandomFoodPosition();
