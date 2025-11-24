@@ -232,11 +232,39 @@ function themeButtons() {
 }
 
 function shop() {
-    const btn = document.querySelector('.shop')
+    const btn = document.querySelector('.nav__shop');
     btn.addEventListener('click', function() {
-        const container = 
+        const container = document.querySelector('.game');
+        container.insertAdjacentHTML('afterbegin', 
+            `<div class='shop'>
+              <h2>Shop </h2>
+              <button class='shop__item'>Cat</button>
+              <button class='shop__item'>Dog</button>
+              <button class='shop__item'>Bunny</button>
+              </div>`)
+              //happy doggy = money
     })
 }
+
+function notification() {
+    const notifications = [];
+    
+    const container = document.querySelector('body')
+    const notifsContainer = document.querySelector('.notifications')
+    notifsContainer.insertAdjacentHTML('afterbegin', 
+        ``
+    )
+
+    let html = `<div class='notification'>
+                <h2>Notifications</h2>
+                <ul class='notifications'>
+                </ul>>
+                </div>`
+    container.insertAdjacentHTML('afterbegin',
+        html
+    )
+}
+
 changeTheme();
 themeButtons();
 const pet = new Pet('johnny');
@@ -245,3 +273,4 @@ pet.increasePetHunger();
 pet.decreasePetHunger();
 pet.decreasePetHealth();
 pet.getRandomFoodPosition();
+shop()

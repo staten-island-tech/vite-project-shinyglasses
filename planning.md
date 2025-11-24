@@ -22,3 +22,4 @@ to do
 - game = no internet dino gam
 - weird increments that the pet moves in with the name
 - perfect pet collisions (rn html = rect so its messy)
+- notitifications

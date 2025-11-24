@@ -198,9 +198,27 @@ button:hover {
   align-items: center;
   justify-content: space-between;
 }
-.shop:hover {
+.nav__shop:hover {
   transform: none;
   box-shadow: none;
+}
+.nav button {
+  background: none !important;
+  border: none;
+}
+.shop {
+  width: 1000px;
+  height: 500px;
+  background-color: var(--primary);
+  position: fixed;
+  z-index: 10;
+  top: 50%;                      
+  left: 50%;                     
+  transform: translate(-50%, -50%); 
+}
+.shop button {
+  width: 1000px;
+  height: 100px;
 }
 @media screen and (max-width: 600px) {
   .game {
