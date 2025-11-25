@@ -1,4 +1,7 @@
 import './style.css'
+const notifications = [{'name': 'hunger'
+}];
+
 
 class SaveFiles {
     static createSaveFile(name, pet) {
@@ -95,7 +98,6 @@ class Pet {
                     
                     <button class='leave'>X</button>   
                     <img class='feed__pet' src=${petImg}>
-                    <img class='food' src='food.png'>
                     
                     <div class='move'>
                         <button id='up'>Up</button>
@@ -134,6 +136,7 @@ class Pet {
             pet.style.left = `${x}px`;
             if (checkCollision(pet, food)) {
                 this.currentHunger++;
+                notifications.push('+1 Hunger')
             }
         })
         
@@ -237,28 +240,33 @@ function shop() {
         const container = document.querySelector('.game');
         container.insertAdjacentHTML('afterbegin', 
             `<div class='shop'>
-              <h2>Shop </h2>
+                <div class='shop__top'>
+                    <h2>Shop </h2> 
+                    <button class='leave'>X</button> 
+                </div>
+              <div class='shop__items'> 
               <button class='shop__item'>Cat</button>
               <button class='shop__item'>Dog</button>
               <button class='shop__item'>Bunny</button>
+              </div>
               </div>`)
               //happy doggy = money
     })
 }
 
-function notification() {
-    const notifications = [];
+function notification(notifications) {
+    let notifsString = ``
     
     const container = document.querySelector('body')
     const notifsContainer = document.querySelector('.notifications')
     notifsContainer.insertAdjacentHTML('afterbegin', 
-        ``
+        `<li></li>`
     )
 
     let html = `<div class='notification'>
                 <h2>Notifications</h2>
                 <ul class='notifications'>
-                </ul>>
+                </ul>
                 </div>`
     container.insertAdjacentHTML('afterbegin',
         html
