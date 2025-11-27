@@ -1,28 +1,26 @@
 :root {
-  --light-primary: rgb(247, 252, 255);
   --light-secondary: rgb(31, 37, 41);
   --light-text: rgb(31, 37, 41);
   --light-button: rgb(226, 232, 238);
-  --light-accent: rgb(188, 228, 255);
-  --light-box:  rgb(230, 235, 252);
+  --light-primary: rgb(188, 228, 255);
+  --light-border: #e5e7eb;
+  --light-background: rgb(246, 252, 255);
+  --light-card: #FFFFFF;
 
-  --dark-primary: rgb(26, 32, 44);
   --dark-secondary: rgb(113, 128, 150);
   --dark-text: rgb(237, 242, 247);
   --dark-button: rgb(76, 86, 106);
-  --dark-accent:  rgb(58, 28, 82);
+  --dark-primary:  rgb(58, 28, 82);
 
-  --strawberry-primary: rgb(255, 227, 224);
   --strawberry-secondary: rgb(213, 63, 63);
   --strawberry-text: rgb(74, 31, 31);
   --strawberry-button: rgb(245, 101, 101);
-  --strawberry-accent:  rgb(252, 33, 33);
+  --strawberry-primary:  rgb(252, 33, 33);
   
-  --peaches-primary: rgb(255, 245, 230);
   --peaches-secondary: rgb(214, 158, 46);
   --peaches-text: rgb(0, 0, 0);
   --peaches-button: rgb(246, 173, 85);
-  --peaches-accent:  rgb(250, 147, 13);
+  --peaches-primary:  rgb(250, 147, 13);
 
   font-family: 'Press Start 2P';
 }
@@ -44,7 +42,7 @@ body, * {
     padding: 0;
     margin: 0;
     font-size: 15px;
-    background-color: var(--primary);
+    background-color: var(--background);
     color: var(--text);
 }
 
@@ -53,8 +51,9 @@ body, * {
   --secondary: var(--light-secondary);
   --text: var(--light-text);
   --button: var(--light-button);
-  --accent: var(--light-accent);
-  --box: var(--light-box);
+  --primary: var(--light-primary);
+  --background: var(--light-background);
+  --border: var(--light-border)
 }
 
 .dark {
@@ -62,21 +61,21 @@ body, * {
   --secondary: var(--dark-secondary);
   --text: var(--dark-text);
   --button: var(--dark-button);
-  --accent: var(--dark-accent);
+  --primary: var(--dark-primary);
 }
 .strawberry {
   --primary: var(--strawberry-primary);
   --secondary: var(--strawberry-secondary);
   --text: var(--strawberry-text);
   --button: var(--strawberry-button);
-  --accent: var(--strawberry-accent);
+  --primary: var(--strawberry-primary);
 }
 .peaches {
   --primary: var(--peaches-primary);
   --secondary: var(--peaches-secondary);
   --text: var(--peaches-text);
   --button: var(--peaches-button);
-  --accent: var(--peaches-accent);
+  --primary: var(--peaches-primary);
 }
 
 button {
@@ -107,7 +106,7 @@ button:hover {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--box) !important;
+  background-color: var(--background) !important;
 }
 .pet__status {
   display: flex;
@@ -146,25 +145,28 @@ button:hover {
   background-color: var(--box);
 }
 
-.themes {
-  display: flex;
-  align-items: center;
-}
-
-.theme__options {
-  display: flex;
-  justify-content: center; 
-  gap: 1%;              
-  flex-grow: 1;
-  width: 100%;
+.theme__options {              
+ 
 }
 .themes h2 {
   font-size: 2.488rem;
   margin-left: 1%;
   font-weight: 300;
-  position: absolute;
+  text-align: center;
+  margin: 3vh;
 }
-
+.themes {
+  width: 40vw;
+  height: 40vh;
+  position: fixed;
+  z-index: 10;
+  top: 35%;                      
+  left: 50%;                     
+  transform: translate(-50%, -50%); 
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
 .feed {
   position: fixed;
   z-index: 10;
@@ -202,7 +204,7 @@ button:hover {
   height: 80%;
   background: 0;
   font-size: 2.488rem;
-  background-color: var(--accent);
+  background-color: var(--primary);
 }
 .feed__pet {
   position: absolute;
@@ -215,17 +217,14 @@ button:hover {
   font-size: 2.986rem;
   text-align: center;
 }
-.shop {
-  background-color: var(--primary);
-  border-width: 0;
-}
+
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2vh;
   padding: 2vh;
-  background-color: var(--accent) !important;
+  background-color: var(--primary) !important;
 }
 .nav__shop:hover {
   transform: none;
