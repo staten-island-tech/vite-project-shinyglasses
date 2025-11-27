@@ -15,11 +15,8 @@ to do
 - media query
 - the themes
 - feed with and play buttons
-- pet hungry every 15 sec feature
-- if have extra time make the themes a dropdown instead
-- add shop drop down
-- if have extra time, change theme to drop down
-- game = no internet dino gam
+- game = no internet dino game??
 - weird increments that the pet moves in with the name
-- perfect pet collisions (rn html = rect so its messy)
-- notitifications
+- perfect pet collisions (rn html = rect so its messy) + make it so pets cant go out of box
+- notitifications -> side bar?
+- make sure cant open multiple tabs at once

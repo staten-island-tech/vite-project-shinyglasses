@@ -7,20 +7,29 @@
   --light-background: rgb(246, 252, 255);
   --light-card: #FFFFFF;
 
-  --dark-secondary: rgb(113, 128, 150);
+  --dark-secondary: rgb(129, 140, 248);
   --dark-text: rgb(237, 242, 247);
   --dark-button: rgb(76, 86, 106);
-  --dark-primary:  rgb(58, 28, 82);
+  --dark-primary: rgb(63, 28, 112);
+  --dark-border: rgb(95, 94, 94);
+  --dark-background:rgb(17, 24, 39);
+  --dark-card:rgb(31, 41, 55);
 
   --strawberry-secondary: rgb(213, 63, 63);
-  --strawberry-text: rgb(74, 31, 31);
+  --strawberry-text:rgb(44, 22, 26);
   --strawberry-button: rgb(245, 101, 101);
   --strawberry-primary:  rgb(252, 33, 33);
+  --strawberry-border: rgb(241, 209, 215);
+  --strawberry-background: rgb(255, 248, 250);
+  --strawberry-card: rgb(255,255,255);
   
   --peaches-secondary: rgb(214, 158, 46);
-  --peaches-text: rgb(0, 0, 0);
+  --peaches-text:rgb(44, 32, 26);
   --peaches-button: rgb(246, 173, 85);
   --peaches-primary:  rgb(250, 147, 13);
+  --peaches-border: rgb(239, 223, 214);
+  --peaches-background: rgb(255, 249, 244);
+  --peaches-card: rgb(255, 255, 255);
 
   font-family: 'Press Start 2P';
 }
@@ -46,14 +55,43 @@ body, * {
     color: var(--text);
 }
 
+:root {
+  --light-primary: rgb(59, 130, 246);
+  --light-secondary: rgb(99, 102, 241);
+  --light-text: rgb(17, 24, 39);
+  --light-button: rgb(59, 130, 246);
+  --light-background: rgb(249, 250, 251);
+  --light-border: rgb(229, 231, 235);
+
+  --dark-primary: rgb(59, 130, 246);
+  --dark-secondary: rgb(129, 140, 248);
+  --dark-text: rgb(249, 250, 251);
+  --dark-button: rgb(59, 130, 246);
+  --dark-background: rgb(17, 24, 39);
+  --dark-border: rgb(55, 65, 81);
+
+  --strawberry-primary: rgb(227, 45, 86);
+  --strawberry-secondary: rgb(255, 112, 140);
+  --strawberry-text: rgb(44, 22, 26);
+  --strawberry-button: rgb(227, 45, 86);
+  --strawberry-background: rgb(255, 248, 250);
+  --strawberry-border: rgb(241, 209, 215);
+
+  --peaches-primary: rgb(255, 147, 97);
+  --peaches-secondary: rgb(255, 188, 158);
+  --peaches-text: rgb(44, 32, 26);
+  --peaches-button: rgb(255, 147, 97);
+  --peaches-background: rgb(255, 249, 244);
+  --peaches-border: rgb(239, 223, 214);
+}
+
 .light {
   --primary: var(--light-primary);
   --secondary: var(--light-secondary);
   --text: var(--light-text);
   --button: var(--light-button);
-  --primary: var(--light-primary);
   --background: var(--light-background);
-  --border: var(--light-border)
+  --border: var(--light-border);
 }
 
 .dark {
@@ -61,22 +99,28 @@ body, * {
   --secondary: var(--dark-secondary);
   --text: var(--dark-text);
   --button: var(--dark-button);
-  --primary: var(--dark-primary);
+  --background: var(--dark-background);
+  --border: var(--dark-border);
 }
+
 .strawberry {
   --primary: var(--strawberry-primary);
   --secondary: var(--strawberry-secondary);
   --text: var(--strawberry-text);
   --button: var(--strawberry-button);
-  --primary: var(--strawberry-primary);
+  --background: var(--strawberry-background);
+  --border: var(--strawberry-border);
 }
+
 .peaches {
   --primary: var(--peaches-primary);
   --secondary: var(--peaches-secondary);
   --text: var(--peaches-text);
   --button: var(--peaches-button);
-  --primary: var(--peaches-primary);
+  --background: var(--peaches-background);
+  --border: var(--peaches-border);
 }
+
 
 button {
   padding: 12px 20px;

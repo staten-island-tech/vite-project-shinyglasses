@@ -1,8 +1,8 @@
 import './style.css'
 const notifications = [{'name': 'hunger'
 }];
-import { showThemes} from './themes';
-import {Pet} from './pets'
+import { showThemes} from './themes.js';
+import {Pet} from './pets.js'
 
 class SaveFiles {
     static createSaveFile(name, pet) {
