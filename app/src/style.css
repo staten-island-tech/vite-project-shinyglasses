@@ -3,9 +3,9 @@
   --light-text: rgb(31, 37, 41);
   --light-button: rgb(226, 232, 238);
   --light-primary: rgb(188, 228, 255);
-  --light-border: #e5e7eb;
-  --light-background: rgb(246, 252, 255);
-  --light-card: #FFFFFF;
+  --light-border: rgb(48, 47, 47);
+  --light-background: rgb(246, 252, 255); 
+  --light-card: rgb(240, 245, 247);
 
   --dark-secondary: rgb(129, 140, 248);
   --dark-text: rgb(237, 242, 247);
@@ -55,36 +55,6 @@ body, * {
     color: var(--text);
 }
 
-:root {
-  --light-primary: rgb(59, 130, 246);
-  --light-secondary: rgb(99, 102, 241);
-  --light-text: rgb(17, 24, 39);
-  --light-button: rgb(59, 130, 246);
-  --light-background: rgb(249, 250, 251);
-  --light-border: rgb(229, 231, 235);
-
-  --dark-primary: rgb(59, 130, 246);
-  --dark-secondary: rgb(129, 140, 248);
-  --dark-text: rgb(249, 250, 251);
-  --dark-button: rgb(59, 130, 246);
-  --dark-background: rgb(17, 24, 39);
-  --dark-border: rgb(55, 65, 81);
-
-  --strawberry-primary: rgb(227, 45, 86);
-  --strawberry-secondary: rgb(255, 112, 140);
-  --strawberry-text: rgb(44, 22, 26);
-  --strawberry-button: rgb(227, 45, 86);
-  --strawberry-background: rgb(255, 248, 250);
-  --strawberry-border: rgb(241, 209, 215);
-
-  --peaches-primary: rgb(255, 147, 97);
-  --peaches-secondary: rgb(255, 188, 158);
-  --peaches-text: rgb(44, 32, 26);
-  --peaches-button: rgb(255, 147, 97);
-  --peaches-background: rgb(255, 249, 244);
-  --peaches-border: rgb(239, 223, 214);
-}
-
 .light {
   --primary: var(--light-primary);
   --secondary: var(--light-secondary);
@@ -92,6 +62,7 @@ body, * {
   --button: var(--light-button);
   --background: var(--light-background);
   --border: var(--light-border);
+  --card: var(--light-card);
 }
 
 .dark {
@@ -101,6 +72,7 @@ body, * {
   --button: var(--dark-button);
   --background: var(--dark-background);
   --border: var(--dark-border);
+  --card: var(--dark-card);
 }
 
 .strawberry {
@@ -110,6 +82,7 @@ body, * {
   --button: var(--strawberry-button);
   --background: var(--strawberry-background);
   --border: var(--strawberry-border);
+  --card: var(--strawberry-card);
 }
 
 .peaches {
@@ -119,6 +92,7 @@ body, * {
   --button: var(--peaches-button);
   --background: var(--peaches-background);
   --border: var(--peaches-border);
+  --card: var(--peaches-card);
 }
 
 
@@ -135,7 +109,7 @@ button:hover {
   box-shadow: 0 4px 10px var(--secondary);
 }
 .game {
-  border: 4px solid var(--secondary);
+  border: 3px solid var(--border);
   border-radius: 12px;
   margin: 0 auto;
   width: 20vw;
@@ -150,20 +124,21 @@ button:hover {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  background-color: var(--background) !important;
+  background-color: var(--card) !important;
 }
 .pet__status {
   display: flex;
   gap: 10%;
   white-space: nowrap;
   flex-direction: column;
+  background-color: var(--card);
 }
 .pet__status h3 {
-  background-color: var(--box);
+  background-color: var(--card);
   margin-left: 1vw;
 }
 .name {
-  background-color: var(--box);
+  background-color: var(--card);
 }
 .pet__bottom {
   display: flex;
@@ -171,7 +146,7 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
-  background-color: var(--box);
+  background-color: var(--card);
 }
 .pet__buttons {
   display: flex;
@@ -179,28 +154,41 @@ button:hover {
   white-space: nowrap;
   margin-right: 5px;
   flex-direction: column;
+  background-color: var(--card);
 }
 .pet__buttons button {
   padding: 8px 10px;
-  background-color: var(--primary);
+  background-color: var(--button);
+  border: 2px solid 
 }
 .pet {
   margin: auto;
-  background-color: var(--box);
+  background-color: var(--card);
 }
 
 .theme__options {              
- 
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   gap: 1vh;
+   background-color: var(--card);
 }
 .themes h2 {
   font-size: 2.488rem;
   margin-left: 1%;
   font-weight: 300;
-  text-align: center;
+  text-align: center !important;
   margin: 3vh;
+  background-color: var(--card);
+}
+.theme {
+  font-weight: 700;
+  width: 15vw;
+  height: 5vh;
+  border: 1px solid var(--border);
 }
 .themes {
-  width: 40vw;
+  width: 20vw;
   height: 40vh;
   position: fixed;
   z-index: 10;
@@ -210,6 +198,14 @@ button:hover {
   border: 2px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
+  background-color: var(--card);
+}
+.themes__top {
+  background-color: var(--card);
+  display: flex;
+}
+.themes__top .leave {
+margin-right: 12%
 }
 .feed {
   position: fixed;
@@ -228,7 +224,7 @@ button:hover {
   border-radius: 12px;
   
 }
-.leave {
+.feed .leave {
   background-color: var(--button);
   width: 5%;
   height: 8%;

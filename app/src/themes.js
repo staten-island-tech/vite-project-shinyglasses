@@ -14,7 +14,9 @@ export function showThemes() {
     btn.addEventListener('click', function() {
         const container = document.querySelector('.game');
         container.insertAdjacentHTML('afterbegin', `<div class='themes'</div>
-        <h2>Themes</h2> 
+        <div class='themes__top'> 
+            <h2>Themes</h2> <button class='leave'>X</button>
+        </div> 
         <div class="theme__options"> 
         <button class="theme">Light</button>
         <button class="theme">Dark</button>
