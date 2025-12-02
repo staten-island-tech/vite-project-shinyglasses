@@ -1,5 +1,6 @@
+import { initExitPopup, preventMultiplePopups } from "./misc";
+
 export function themeButtons(btns) {
-        console.log(btns);
         btns.forEach(btn => btn.addEventListener('click', function(event) {
         console.log('changing colooor')
         const theme = event.target.textContent.toLowerCase();
@@ -13,7 +14,7 @@ export function showThemes() {
     const btn = document.querySelector('.nav__themes')
     btn.addEventListener('click', function() {
         const container = document.querySelector('.game');
-        container.insertAdjacentHTML('afterbegin', `<div class='themes'</div>
+        const popupHTML = `<div class='themes popup'</div>
         <div class='themes__top'> 
             <h2>Themes</h2> <button class='leave'>X</button>
         </div> 
@@ -23,9 +24,11 @@ export function showThemes() {
         <button class="theme">Strawberry</button>
         <button class="theme">Peaches</button>
       </div>
-      </div>`)
+      </div>`
+      preventMultiplePopups(popupHTML, container);
     const btns = document.querySelectorAll('.theme');
     themeButtons(btns);
+    initExitPopup();
 
     })
 }

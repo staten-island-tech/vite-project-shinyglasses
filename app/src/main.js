@@ -3,6 +3,7 @@ const notifications = [{'name': 'hunger'
 }];
 import { showThemes} from './themes.js';
 import {Pet} from './pets.js'
+import { initExitPopup, preventMultiplePopups } from './misc.js';
 
 class SaveFiles {
     static createSaveFile(name, pet) {
@@ -42,8 +43,7 @@ function shop() {
     const btn = document.querySelector('.nav__shop');
     btn.addEventListener('click', function() {
         const container = document.querySelector('.game');
-        container.insertAdjacentHTML('afterbegin', 
-            `<div class='shop'>
+        const popupHTML = `<div class='shop popup'>
                 <div class='shop__top'>
                     <h2>Shop </h2> 
                     <button class='leave'>X</button> 
@@ -53,8 +53,10 @@ function shop() {
               <button class='shop__item'>Dog</button>
               <button class='shop__item'>Bunny</button>
               </div>
-              </div>`)
-              //happy doggy = money
+              </div>`
+              
+        preventMultiplePopups(popupHTML, container);
+        initExitPopup();
     })
 }
 

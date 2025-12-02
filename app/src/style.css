@@ -202,10 +202,10 @@ button:hover {
 }
 .themes__top {
   background-color: var(--card);
-  display: flex;
 }
 .themes__top .leave {
-margin-right: 12%
+  position: absolute;
+height: 4vh;
 }
 .feed {
   position: fixed;

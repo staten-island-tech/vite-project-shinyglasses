@@ -1,3 +1,4 @@
+import { initExitPopup, preventMultiplePopups } from "./misc";
 export class Pet {
     constructor(name) {
         this.name = name;
@@ -52,8 +53,7 @@ export class Pet {
             const container = document.querySelector('.game')
             const petImg = self.getPetImage()
             console.log(self.currentHunger)
-            container.insertAdjacentHTML('beforeend', 
-                `<div class=feed>
+            const popupHTML = `<div class='feed popup'>
                     
                     <button class='leave'>X</button>   
                     <img class='feed__pet' src=${petImg}>
@@ -64,11 +64,14 @@ export class Pet {
                         <button id='left'>Left</button>
                         <button id='right'>Right</button>
                     </div>
-                </div>`)
+                </div>`
+            preventMultiplePopups(popupHTML, container);
+            
             self.getRandomFoodPosition();
             self.currentHunger -= 1;
             self.updatePetStatus();
             self.petMovement();
+            initExitPopup();
         })
         }
     petMovement() {
