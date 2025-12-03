@@ -2,7 +2,6 @@ import { initExitPopup, preventMultiplePopups } from "./misc";
 
 export function themeButtons(btns) {
         btns.forEach(btn => btn.addEventListener('click', function(event) {
-        console.log('changing colooor')
         const theme = event.target.textContent.toLowerCase();
         document.body.classList.forEach(cssClass => document.body.classList.remove(cssClass))
         document.body.classList.add(theme);

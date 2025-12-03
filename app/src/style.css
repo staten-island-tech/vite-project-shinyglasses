@@ -178,8 +178,11 @@ button:hover {
   margin-left: 1%;
   font-weight: 300;
   text-align: center !important;
-  margin: 3vh;
+  margin: 3vh auto ;
   background-color: var(--card);
+  display: flex;
+  justify-content: center;
+
 }
 .theme {
   font-weight: 700;
@@ -202,10 +205,14 @@ button:hover {
 }
 .themes__top {
   background-color: var(--card);
+  display: flex;
+  justify-content: flex-end;
 }
 .themes__top .leave {
-  position: absolute;
 height: 4vh;
+position: absolute;
+display: flex;
+
 }
 .feed {
   position: fixed;
@@ -280,39 +287,49 @@ header {
    font-weight: 600;
 }
 .shop {
-  width: 1000px;
-  height: 500px;
-  background-color: var(--primary);
+  width: 20vw;
+  height: 30vh;
   position: fixed;
   z-index: 10;
-  top: 50%;                      
+  top: 35%;                      
   left: 50%;                     
   transform: translate(-50%, -50%); 
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--border);
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .shop h2 {
   font-size: 2.488rem;
   text-align: center;
-  margin: 2%;
+  margin: 2vh auto;
+  display: flex;
+  justify-content: center;
 }
 .shop__item {
   font-weight: 700;
-  font-size: 2.488rem;
-  width: 500px;
-  height: 100px;
+  margin: auto;
+  width: 15vw;
+  height: 5vh;
 }
 .shop__items {
   display: flex;
   flex-direction: column;
   justify-content: center; 
-  gap: 1%;              
+  gap: 1vh;              
   flex-grow: 1;
   width: 100%;
+  align-content: center;
+  text-align: center;
 }
 .shop__top {
   display: flex;
+  justify-content: flex-end;
+}
+.shop__top .leave {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
 }
 @media screen and (max-width: 600px) {
   .game {

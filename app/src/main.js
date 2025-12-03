@@ -54,9 +54,17 @@ function shop() {
               <button class='shop__item'>Bunny</button>
               </div>
               </div>`
-              
         preventMultiplePopups(popupHTML, container);
         initExitPopup();
+
+        const btns = document.querySelectorAll('.shop__item');
+        console.log(btns);
+        btns.forEach(btn => btn.addEventListener('click', function(event){
+                const type = event.target.textContent.toLowerCase();
+                console.log(type);
+            })
+        )
+        
     })
 }
 
