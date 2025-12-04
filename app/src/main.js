@@ -88,7 +88,7 @@ function notification(notifications) {
 }
 
 
-const pet = new Pet('johnny');
+const pet = new Pet('johnny', 'cat');
 pet.showPet();
 pet.increasePetHunger();
 pet.decreasePetHunger();
