@@ -145,7 +145,6 @@ button:hover {
   white-space: none;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;
   background-color: var(--card);
 }
 .pet__buttons {
@@ -288,7 +287,7 @@ header {
 }
 .shop {
   width: 20vw;
-  height: 30vh;
+  height: 40vh;
   position: fixed;
   z-index: 10;
   top: 35%;                      
@@ -309,7 +308,7 @@ header {
 .shop__item {
   font-weight: 700;
   margin: auto;
-  width: 15vw;
+  width: 10vw;
   height: 5vh;
 }
 .shop__items {
@@ -321,15 +320,34 @@ header {
   width: 100%;
   align-content: center;
   text-align: center;
+  margin-top: 2vh;
 }
 .shop__top {
   display: flex;
   justify-content: flex-end;
 }
+.buy {
+  width: 15vw;
+  text-align: center;
+  margin: auto;
+  margin-top: 3vh;
+}
 .shop__top .leave {
   position: absolute;
   display: flex;
   justify-content: flex-end;
+}
+.shop form{
+display: flex;
+flex-direction: row;
+justify-content: center;
+width: 90%;
+margin: auto;
+gap: 1vh;
+}
+
+.shop form label {
+  text-align: center;
 }
 @media screen and (max-width: 600px) {
   .game {

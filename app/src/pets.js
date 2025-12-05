@@ -1,4 +1,5 @@
-import { initExitPopup, preventMultiplePopups } from "./misc";
+import { initExitPopup, preventMultiplePopups, checkCollision } from "./misc";
+
 export class Pet {
     constructor(name, type) {
         this.name = name;
@@ -82,11 +83,10 @@ export class Pet {
         const food = document.querySelector('.food')
         let x = pet.offsetLeft;
         let y = pet.offsetTop;    
-        let speed = 5;
+        let speed = 20;
 
         btnContainer.addEventListener('click', function(event) {
             const btn = event.target.textContent;
-            
             if (btn === 'Up') {
                 y -= speed;
             } else if (btn === 'Down') {
@@ -98,8 +98,10 @@ export class Pet {
             }
             pet.style.top = `${y}px`;
             pet.style.left = `${x}px`;
+
             if (checkCollision(pet, food)) {
                 this.currentHunger++;
+                btnContainer.remove();
                 notifications.push('+1 Hunger')
             }
         })

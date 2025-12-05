@@ -26,18 +26,7 @@ class SaveFiles {
     }
 }}
 
-function checkCollision(rect1, rect2) {
-  
-  if (rect1.x < rect2.x + rect2.width &&
-      rect1.x + rect1.width > rect2.x &&
-      rect1.y < rect2.y + rect2.height &&
-      rect1.y + rect1.height > rect2.y) {
 
-    console.log('true')
-    return true;
-  }
-  return false;
-}
 
 function shop() {
     const btn = document.querySelector('.nav__shop');
@@ -48,15 +37,26 @@ function shop() {
                     <h2>Shop </h2> 
                     <button class='leave'>X</button> 
                 </div>
+            <form>
+                <label for="comments">Pet Name</label>
+                 <input type="text" id="name" name="name" placeholder='Enter pet name   '>
+            </form>
               <div class='shop__items'> 
               <button class='shop__item'>Cat</button>
               <button class='shop__item'>Dog</button>
               <button class='shop__item'>Bunny</button>
+              <button class='buy' type='submit'>Buy Pet</button>
               </div>
+              
               </div>`
         preventMultiplePopups(popupHTML, container);
         initExitPopup();
-
+        const buyBtn = document.querySelector('.buy');
+        buyBtn.addEventListener('click', function() {
+            const inputElement = document.getElementById('name');
+            const inputValue = inputElement.value;
+            console.log(inputValue)
+        })
         const btns = document.querySelectorAll('.shop__item');
         console.log(btns);
         btns.forEach(btn => btn.addEventListener('click', function(event){
@@ -64,7 +64,6 @@ function shop() {
                 console.log(type);
             })
         )
-        
     })
 }
 

@@ -19,4 +19,4 @@ to do
 - weird increments that the pet moves in with the name
 - perfect pet collisions (rn html = rect so its messy) + make it so pets cant go out of box
 - notitifications -> side bar?
-- make sure cant open multiple tabs at once
+- deal with empty and duplicate pet names
