@@ -6,14 +6,16 @@
   --light-border: rgb(48, 47, 47);
   --light-background: rgb(246, 252, 255); 
   --light-card: rgb(240, 245, 247);
+  --light-selected-button:  rgb(199, 204, 208);
 
   --dark-secondary: rgb(129, 140, 248);
   --dark-text: rgb(237, 242, 247);
   --dark-button: rgb(76, 86, 106);
-  --dark-primary: rgb(63, 28, 112);
+  --dark-primary: rgb(6, 16, 86);
   --dark-border: rgb(95, 94, 94);
   --dark-background:rgb(17, 24, 39);
   --dark-card:rgb(31, 41, 55);
+  --dark-selected-button: rgb(63, 71, 88);
 
   --strawberry-secondary: rgb(213, 63, 63);
   --strawberry-text:rgb(44, 22, 26);
@@ -22,6 +24,7 @@
   --strawberry-border: rgb(241, 209, 215);
   --strawberry-background: rgb(255, 248, 250);
   --strawberry-card: rgb(255,255,255);
+  --strawberry-selected-button: rgb(220, 90, 90);
   
   --peaches-secondary: rgb(214, 158, 46);
   --peaches-text:rgb(44, 32, 26);
@@ -30,6 +33,7 @@
   --peaches-border: rgb(239, 223, 214);
   --peaches-background: rgb(255, 249, 244);
   --peaches-card: rgb(255, 255, 255);
+  --peaches-selected-button: rgb(220, 155, 76);
 
   font-family: 'Press Start 2P';
 }
@@ -63,6 +67,7 @@ body, * {
   --background: var(--light-background);
   --border: var(--light-border);
   --card: var(--light-card);
+  --selected-button: var(--light-selected-button)
 }
 
 .dark {
@@ -73,6 +78,7 @@ body, * {
   --background: var(--dark-background);
   --border: var(--dark-border);
   --card: var(--dark-card);
+  --selected-button: var(--dark-selected-button)
 }
 
 .strawberry {
@@ -83,6 +89,7 @@ body, * {
   --background: var(--strawberry-background);
   --border: var(--strawberry-border);
   --card: var(--strawberry-card);
+  --selected-button: var(--strawberry-button);
 }
 
 .peaches {
@@ -93,6 +100,7 @@ body, * {
   --background: var(--peaches-background);
   --border: var(--peaches-border);
   --card: var(--peaches-card);
+  --selected-button: var(--peaches-selected-button)
 }
 
 

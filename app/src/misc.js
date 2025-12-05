@@ -23,3 +23,29 @@ export function checkCollision(rect1, rect2) {
   }
   return false;
 }
+
+export function changeSelectedButtonCSS(btns, selectedBtn) {
+    for(let i = 0; i <  btns.length; i++) {
+            btns[i].style.backgroundColor = 'var(--button)';
+        } 
+    selectedBtn.style.backgroundColor = 'var(--selected-button)';
+}
+
+function notification(notifications) {
+    let notifsString = ``
+    
+    const container = document.querySelector('body')
+    const notifsContainer = document.querySelector('.notifications')
+    notifsContainer.insertAdjacentHTML('afterbegin', 
+        `<li></li>`
+    )
+
+    let html = `<div class='notification'>
+                <h2>Notifications</h2>
+                <ul class='notifications'>
+                </ul>
+                </div>`
+    container.insertAdjacentHTML('afterbegin',
+        html
+    )
+}
