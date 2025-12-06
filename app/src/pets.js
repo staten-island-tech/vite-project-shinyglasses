@@ -52,7 +52,7 @@ export class Pet {
         const btn = document.querySelector('.feed_pet');
         
         btn.addEventListener('click', function() {
-            const container = document.querySelector('.game')
+            const container = document.querySelector('.pet')
             
             const petImg = self.getPetImage()
             console.log(self.currentHunger)
@@ -79,11 +79,12 @@ export class Pet {
         }
     petMovement() {
         const btnContainer = document.querySelector('.move')
+        const feedContainer = document.querySelector('.feed')
         const pet = document.querySelector('.feed__pet')
         const food = document.querySelector('.food')
         let x = pet.offsetLeft;
         let y = pet.offsetTop;    
-        let speed = 20;
+        let speed = 20; //in px
 
         btnContainer.addEventListener('click', function(event) {
             const btn = event.target.textContent;
@@ -101,7 +102,7 @@ export class Pet {
 
             if (checkCollision(pet, food)) {
                 this.currentHunger++;
-                btnContainer.remove();
+                feedContainer.remove();
                 notifications.push('+1 Hunger')
             }
         })
@@ -154,10 +155,10 @@ export class Pet {
         }
     showPet() {
         let imgName = this.getPetImage();
-        let html = `<div class='game'>
+        let html = `<div class='pet'>
         <div class='pet__container'> 
         <h2 class='name'>${this.name}</h2>
-            <img class='pet' src='${imgName}'>
+            <img class='pet__image' src='${imgName}'>
             <div class='pet__bottom'>
             <div class='pet__status'>
                 <h3>Hunger: <b>${this.currentHunger}</b>/${this.maxHungerLevel} </h3>
@@ -170,7 +171,14 @@ export class Pet {
             </div>
         </div>    
         </div>`
-        const container = document.querySelector('.container');
+        const container = document.querySelector('.pets');
         container.insertAdjacentHTML('beforeend', html);
+    }
+    setUpPet() {
+        this.showPet();
+        this.increasePetHunger();
+        this.decreasePetHunger();
+        this.decreasePetHealth();
+        this.getRandomFoodPosition();
     }
 }   
