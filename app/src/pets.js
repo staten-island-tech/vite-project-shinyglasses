@@ -175,15 +175,11 @@ export class Pet {
         const container = document.querySelector('.pets');
         container.insertAdjacentHTML('beforeend', html);
     }
-    addToInventory(inventory) {
-        inventory.push(this);
-    }
-    setUpPet(inventory) {
+    setUpPet() {
         this.showPet();
         this.increasePetHunger();
         this.decreasePetHunger();
         this.decreasePetHealth();
         this.getRandomFoodPosition();
-        this.addToInventory(inventory);
     }
 }   

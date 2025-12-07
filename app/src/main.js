@@ -12,7 +12,8 @@ console.log(localStorage)
 Savefiles.showSaveFilesPopUp();
 shop();
 showThemesPopup();
+console.log("MAIN STORAGE", window.localStorage === localStorage);
 
 
-localStorage.clear();
+
 //when load in make three save files so its easy to access later => access the first one
