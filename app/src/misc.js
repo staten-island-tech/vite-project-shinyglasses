@@ -1,9 +1,15 @@
 export function initExitPopup() {
     const btns = document.querySelectorAll('.leave');
     btns.forEach(btn => btn.addEventListener('click', function(element) {
+        const food = document.querySelectorAll('.food')
+        if (food) {
+            food.forEach(f => f.remove())
+        }
         const container = element.target.closest('.popup');
         container.remove()
+        
     }))
+    
 }
 
 export function preventMultiplePopups(popupHTML, container) {
@@ -29,22 +35,4 @@ export function changeSelectedButtonCSS(btns, selectedBtn) {
             btns[i].style.backgroundColor = 'var(--button)';
         } 
     selectedBtn.style.backgroundColor = 'var(--selected-button)';
-}
-function notification(notifications) {
-    let notifsString = ``
-    
-    const container = document.querySelector('body')
-    const notifsContainer = document.querySelector('.notifications')
-    notifsContainer.insertAdjacentHTML('afterbegin', 
-        `<li></li>`
-    )
-
-    let html = `<div class='notification'>
-                <h2>Notifications</h2>
-                <ul class='notifications'>
-                </ul>
-                </div>`
-    container.insertAdjacentHTML('afterbegin',
-        html
-    )
 }

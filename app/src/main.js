@@ -5,14 +5,18 @@ import {showThemesPopup, shop, Savefiles} from './popups.js';
 import {Pet} from './pets.js'
 import { initExitPopup, preventMultiplePopups } from './misc.js';
 
+
+if (localStorage.length === 0) {
 Savefiles.createSavefile([], 'light', 'one', true);
 Savefiles.createSavefile([], 'light', 'two', false);
 Savefiles.createSavefile([], 'light', 'three', false);
+}
+
 console.log(localStorage)
 Savefiles.showSaveFilesPopUp();
 shop();
 showThemesPopup();
-console.log("MAIN STORAGE", window.localStorage === localStorage);
+Savefiles.loadSavefile();
 
 
 

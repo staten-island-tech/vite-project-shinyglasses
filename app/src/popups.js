@@ -2,7 +2,6 @@ import {initExitPopup,preventMultiplePopups,changeSelectedButtonCSS} from "./mis
 import { Pet } from "./pets";
 
 const inventory = [];
-console.log("POPUP STORAGE", window.localStorage === localStorage);
 
 export function changeTheme(btns) {
   btns.forEach((btn) =>
@@ -31,6 +30,7 @@ export function showThemesPopup() {
         <button class="theme">Peaches</button>
       </div>
       </div>`;
+    
     preventMultiplePopups(popupHTML, container);
     const btns = document.querySelectorAll(".theme");
     changeTheme(btns);
@@ -66,7 +66,6 @@ export function shop() {
     btns.forEach((btn) =>
       btn.addEventListener("click", function (event) {
         type = event.target.textContent.toLowerCase();
-        console.log(type);
         changeSelectedButtonCSS(btns, btn);
       })
     );
@@ -74,15 +73,51 @@ export function shop() {
     buyBtn.addEventListener("click", function () {
       const inputElement = document.getElementById("name");
       const inputValue = inputElement.value;
-      const pet = new Pet(inputValue, type);
+      if (checkIfPetNameTaken(inputValue)) {
+        const area  = document.querySelector('.pets')
+        area.insertAdjacentHTML('afterbegin', `
+          <div class='nametaken popup'>
+          <h2>Name Taken. Try a different name</h2>
+          <button class='leave'>X</button>
+          </div>`)
+          initExitPopup()
+      } else if (checkifNoPetName(inputValue)) {
+        const area  = document.querySelector('.pets')
+        area.insertAdjacentHTML('afterbegin', `
+          <div class='noname popup'>
+          <h2>No Name. Please put a name</h2>
+          <button class='leave'>X</button>
+          </div>`)
+          initExitPopup()
+      } 
+      else {
+       const pet = new Pet(inputValue, type);
       inventory.push(pet);
-      console.log(inventory)
+      
+      Savefiles.updateSaveInventory(inventory);
+      
       console.log(localStorage) 
-      pet.setUpPet();
+      pet.setUpPet(); 
+      }
     });
   });
 }
-
+function checkifNoPetName(name) {
+  if (name === '') {
+    return true
+  }
+}
+function checkIfPetNameTaken(name) {
+  let save = Savefiles.getSelectedSave();
+  console.log(save)
+  for (let i = 0; i < save.inventory.length; i++) {
+      if (name === save.inventory[i].name) {
+        return true
+      }
+  } 
+  return false
+  
+}
 export class Savefiles {
 static createSavefile(inventory, theme, name, active) {
 const userProfile = { 
@@ -94,28 +129,36 @@ const userProfile = {
 };
 localStorage.setItem(`save__${name}`, JSON.stringify(userProfile));
 }
-static updateSavefile() {
-  setInterval(function() {
-            
-            }   
-            , 5000); 
+
+static updateSaveInventory(inventory) {
+  let num = 0
+  for (let i = 0; i < localStorage.length; i++) {
+      
+      if (i === 0) {
+        num = 'one'
+      } else if (i === 1) {
+        num = 'two'
+      } else {
+        num = 'three'
+      }
+    }
+  
+  let save = Savefiles.getSelectedSave();
+  save.inventory = inventory;
+  localStorage.setItem(`save__${num}`, JSON.stringify(save))
 }
 static switchSavefile() {
     const btns = document.querySelectorAll('.savefile__select');
     Savefiles.highlightSelectedSave();  
     btns.forEach(btn => {
         btn.addEventListener('click', function() {
-            
             const slot = btn.closest('.savefiles__slot');
             const name = slot.getAttribute('data-title');
-            
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 const save = JSON.parse(localStorage.getItem(key));
                 save.active = (save.name === name);
-                console.log(save.active)
                 localStorage.setItem(key, JSON.stringify(save));
-                console.log(localStorage)
             }
             
             //changing the css of the selected slot
@@ -133,36 +176,49 @@ static switchSavefile() {
             let selectedHeading = selectedSlot.querySelector('h3');
             selectedSlot.style.backgroundColor = 'var(--selected-button)';
             selectedHeading.style.backgroundColor = 'var(--selected-button)';
+              
+            Savefiles.loadSavefile();
         });
     });
 }
-static loadSavefile(name) {
-  const savefile = JSON.parse(localStorage.getItem(`save__${name}`));
-  return savefile
+static loadedPets = []; 
+static loadSavefile() {
+  let save = Savefiles.getSelectedSave();
+  const pets = document.querySelectorAll('.pet');
+   pets.forEach(pet => {
+      pet.remove();
+  })
+  Savefiles.loadedPets.forEach(pet =>
+    pet.clearIntervals()
+  )
+  if (save.inventory.length === 0) {
+    Savefiles.loadedPets = []
+  }
+  console.log(save.inventory)
+    for (let i = 0; i < save.inventory.length; i++) {
+      const pet = new Pet(save.inventory[i].name, save.inventory[i].petType)
+      pet.setUpPet();
+      Savefiles.loadedPets.push(pet);
+      console.log(Savefiles.loadedPets)
+  } 
+   
+}  
+
+static getSelectedSave() {
+  for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const save = JSON.parse(localStorage.getItem(key));
+      if (save.active) {
+        return save
+      }
+    }
 }
 static highlightSelectedSave() {
-  for (let i = 0; i < localStorage.length; i++) {
-      let num = 0
-      if (i === 0) {
-        num = 'one'
-      } else if (i === 1) {
-        num = 'two'
-      } else {
-        num = 'three'
-      }
-      let tempSave = localStorage.getItem(`save__${num}`);
-      
-      let save = JSON.parse(tempSave);
-      if (save.active) {
-        console.log(save.name)
-        const slot = document.querySelector(`[data-title='${save.name}']`);
-        const heading = slot.querySelector('h3')
-        slot.style.backgroundColor = 'var(--selected-button)'
-        heading.style.backgroundColor = 'var(--selected-button)'
-        console.log(slot)
-      }
-      
-    }
+  let save = Savefiles.getSelectedSave();
+  const slot = document.querySelector(`[data-title='${save.name}']`);
+  const heading = slot.querySelector('h3')
+  slot.style.backgroundColor = 'var(--selected-button)'
+  heading.style.backgroundColor = 'var(--selected-button)'
 }
 static showSaveFilesPopUp() {
 const btn = document.querySelector(".nav__saves");
@@ -176,17 +232,14 @@ const popupHTML = `<div class='savefiles popup'>
           <div class='savefiles__list'> 
               <div class='savefiles__slot' data-title='one'>
                   <h3>Save 1</h3> 
-                  <button class='savefile__rename'>Rename</button>
                   <button class='savefile__select'>Select</button>
               </div>
               <div class='savefiles__slot' data-title='two'>
                   <h3>Save 2</h3> 
-                  <button class='savefile__rename'>Rename</button>
                   <button class='savefile__select'>Select</button>
               </div>
               <div class='savefiles__slot' data-title='three'>
                   <h3>Save 3</h3> 
-                  <button class='savefile__rename'>Rename</button> 
                   <button class='savefile__select'>Select</button>
               </div>
           </div>
@@ -194,7 +247,6 @@ const popupHTML = `<div class='savefiles popup'>
     preventMultiplePopups(popupHTML, container);
     initExitPopup();
     Savefiles.switchSavefile()
-    console.log(localStorage);
     Savefiles.highlightSelectedSave();
 });
 }
