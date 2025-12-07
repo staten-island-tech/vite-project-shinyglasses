@@ -1,4 +1,5 @@
 import { initExitPopup, preventMultiplePopups, checkCollision } from "./misc";
+import { Savefiles } from "./popups";
 
 export class Pet {
     constructor(name, type) {
@@ -174,11 +175,15 @@ export class Pet {
         const container = document.querySelector('.pets');
         container.insertAdjacentHTML('beforeend', html);
     }
-    setUpPet() {
+    addToInventory(inventory) {
+        inventory.push(this);
+    }
+    setUpPet(inventory) {
         this.showPet();
         this.increasePetHunger();
         this.decreasePetHunger();
         this.decreasePetHealth();
         this.getRandomFoodPosition();
+        this.addToInventory(inventory);
     }
 }   

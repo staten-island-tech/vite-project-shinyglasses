@@ -13,10 +13,10 @@
 
 to do 
 - media query
-- the themes
-- feed with and play buttons
+- play button
 - game = no internet dino game??
 - weird increments that the pet moves in with the name
 - perfect pet collisions (rn html = rect so its messy) + make it so pets cant go out of box
-- notitifications -> side bar?
+- notitifications -> side bar? or pop ups?
 - deal with empty and duplicate pet names
+- indication of which save file is selected

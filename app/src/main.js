@@ -1,12 +1,18 @@
 import './style.css'
 const notifications = [{'name': 'hunger'
 }];
-import {showThemesPopup, shop, SaveFiles} from './popups.js';
+import {showThemesPopup, shop, Savefiles} from './popups.js';
 import {Pet} from './pets.js'
 import { initExitPopup, preventMultiplePopups } from './misc.js';
 
-
-const pet = new Pet('johnny', 'cat');
-SaveFiles.showSaveFilesPopUp();
+Savefiles.createSavefile([], 'light', 'one', true);
+Savefiles.createSavefile([], 'light', 'two', false);
+Savefiles.createSavefile([], 'light', 'three', false);
+console.log(localStorage)
+Savefiles.showSaveFilesPopUp();
 shop();
 showThemesPopup();
+
+
+localStorage.clear();
+//when load in make three save files so its easy to access later => access the first one

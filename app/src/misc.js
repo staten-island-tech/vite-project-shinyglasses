@@ -30,7 +30,6 @@ export function changeSelectedButtonCSS(btns, selectedBtn) {
         } 
     selectedBtn.style.backgroundColor = 'var(--selected-button)';
 }
-
 function notification(notifications) {
     let notifsString = ``
     

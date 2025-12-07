@@ -334,34 +334,48 @@ header {
   justify-content: flex-end;
 }
 
-.savefile {
-  font-weight: 700;
-  margin: auto;
-  width: 15vw;
-  height: 5vh;
-  text-align: left;
-}
-.rename {
+.savefile__rename {
   background: none;
   border: none;
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   cursor: pointer;
   padding: 0;
   margin-bottom: 0.25rem;
   position: absolute;
-  right: 20%;
-  bottom: 15%;
+  right: 5%;
+  bottom: 50%;
 }
-
+.savefile__select {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.25rem;
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
 .savefiles__slot {
   display: flex;
-  flex-direction: column; /* stack vertically */
-  align-items: center; /* center horizontally */
+  flex-direction: column; 
   margin-bottom: 1rem;
   position: relative;
+  font-weight: 700;
+  margin: auto;
+  width: 15vw;
+  height: 7vh;
+  text-align: left;
+  background-color: var(--button);
 }
-
+.savefiles__slot h3 {
+  background-color: var(--button);
+  text-align: left;
+  margin: auto 0;
+  margin-left: 1vw;
+}
 .shop {
   width: 20vw;
   height: 40vh;
