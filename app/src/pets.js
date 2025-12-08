@@ -6,10 +6,8 @@ export class Pet {
         this.name = name;
         this.petType = type;
         this.maxHungerLevel = 10;
-        this.maxAffectionLevel = 10;
         this.maxHealthLevel = 10; 
         this.currentHunger = 10;
-        this.currentAffection = 10;
         this.currentHealth = 10;
         this.status = 'happy';
         this.healthInterval = null;
@@ -222,12 +220,10 @@ export class Pet {
         } 
     }
     
-    // Update status display
     const statusContainer = petContainer.querySelector('.pet__status');
     if (!statusContainer) return;
     statusContainer.innerHTML = '';
     statusContainer.insertAdjacentHTML('beforeend', `<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
-            <h3>Affection: ${this.currentAffection}/${this.maxAffectionLevel}</h3>
             <h3>Health: ${this.currentHealth}/${this.maxHealthLevel}</h3>
           `);
 }
@@ -240,7 +236,6 @@ export class Pet {
             <div class='pet__bottom'>
             <div class='pet__status'>
                 <h3>Hunger: <b>${this.currentHunger}</b>/${this.maxHungerLevel} </h3>
-                <h3>Affection: <b> ${this.currentAffection} </b>/${this.maxAffectionLevel}</h3>
                 <h3>Health: <b>${this.currentHealth} </b>/${this.maxHealthLevel}</h3>
             </div>
             <div class='pet__buttons'>

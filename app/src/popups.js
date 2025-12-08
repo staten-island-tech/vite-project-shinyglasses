@@ -7,6 +7,7 @@ export function changeTheme(btns) {
   btns.forEach((btn) =>
     btn.addEventListener("click", function (event) {
       const theme = event.target.textContent.toLowerCase();
+      Savefiles.updateTheme(theme)
       document.body.classList.forEach((cssClass) =>
         document.body.classList.remove(cssClass)
       );
@@ -35,6 +36,17 @@ export function showThemesPopup() {
     const btns = document.querySelectorAll(".theme");
     changeTheme(btns);
     initExitPopup();
+
+    //changing css for selected button
+    const themeName = document.body.className;
+    
+    const themes = document.querySelectorAll('.theme')
+    themes.forEach(theme => {
+      console.log(theme.textContent.toLowerCase())
+      if (theme.textContent.toLowerCase() === themeName) {
+        theme.style.backgroundColor = 'var(--selected-button)'
+      }
+    })
   });
 }
 
@@ -140,7 +152,7 @@ const userProfile = {
 localStorage.setItem(`save__${name}`, JSON.stringify(userProfile));
 }
 
-static updateSaveInventory(inventory) {
+static updateSaveInventory() {
   let num = 0
   for (let i = 0; i < localStorage.length; i++) {
       
@@ -199,6 +211,23 @@ static switchSavefile() {
         });
     });
 } 
+static updateTheme(newTheme) {
+  let save = Savefiles.getSelectedSave();
+  save.theme = newTheme;
+  let num = 0
+  for (let i = 0; i < localStorage.length; i++) {
+      
+      if (i === 0) {
+        num = 'one'
+      } else if (i === 1) {
+        num = 'two'
+      } else {
+        num = 'three'
+      }
+    }
+  localStorage.setItem(`save__${num}`, JSON.stringify(save));
+  console.log(localStorage)
+}
 static loadSavefile() {
   
   let save = Savefiles.getSelectedSave();

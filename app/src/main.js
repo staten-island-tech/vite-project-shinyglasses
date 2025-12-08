@@ -5,7 +5,6 @@ import {showThemesPopup, shop, Savefiles} from './popups.js';
 import {Pet} from './pets.js'
 import { initExitPopup, preventMultiplePopups } from './misc.js';
 
-localStorage.clear();
 if (localStorage.length === 0) {
 Savefiles.createSavefile([], 'light', 'one', true);
 Savefiles.createSavefile([], 'light', 'two', false);

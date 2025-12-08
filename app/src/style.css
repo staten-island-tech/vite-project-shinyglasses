@@ -11,11 +11,11 @@
   --dark-secondary: rgb(129, 140, 248);
   --dark-text: rgb(237, 242, 247);
   --dark-button: rgb(76, 86, 106);
-  --dark-primary: rgb(53, 25, 120);
+  --dark-primary: rgb(25, 39, 120);
   --dark-border: rgb(0, 0, 0);
   --dark-background: rgb(12, 17, 27);
-  --dark-card: rgb(40, 43, 47);
-  --dark-selected-button: rgb(34, 30, 30);
+  --dark-card: rgb(19, 26, 40);
+  --dark-selected-button: rgb(58, 66, 81);
 
   --strawberry-secondary: rgb(213, 63, 63);
   --strawberry-text: rgb(44, 22, 26);
@@ -111,7 +111,9 @@ button {
   background-color: var(--button);
   border: 0;
 }
-
+input[type="text"] {
+  border: 1px solid var(--border)
+}
 .notype {
   width: 30vw;
   height: 10vh;
@@ -204,6 +206,7 @@ button {
   justify-content: space-between;
   align-items: center;
   background-color: var(--card);
+  margin-bottom: 2vh;
 }
 .pet__buttons {
   display: flex;
