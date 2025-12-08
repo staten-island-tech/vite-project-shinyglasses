@@ -1,7 +1,7 @@
 import {initExitPopup,preventMultiplePopups,changeSelectedButtonCSS} from "./misc";
 import { Pet } from "./pets";
 
-export const inventory = [];
+export let inventory = [];
 
 export function changeTheme(btns) {
   btns.forEach((btn) =>
@@ -95,7 +95,7 @@ export function shop() {
        const pet = new Pet(inputValue, type);
         pet.setUpPet();
       inventory.push(pet);
-      
+      console.log(inventory)
       Savefiles.updateSaveInventory(inventory);
       console.log(localStorage) 
        
@@ -146,15 +146,17 @@ static updateSaveInventory(inventory) {
   
   let save = Savefiles.getSelectedSave();
   save.inventory = inventory;
-  localStorage.setItem(`save__${num}`, JSON.stringify(save))
+  localStorage.setItem(`save__${num}`, JSON.stringify(save));
+  console.log(localStorage)
 }
-/* static switchSavefile() {
+static switchSavefile() {
     const btns = document.querySelectorAll('.savefile__select');
     Savefiles.highlightSelectedSave();  
     btns.forEach(btn => {
         btn.addEventListener('click', function() {
             const slot = btn.closest('.savefiles__slot');
             const name = slot.getAttribute('data-title');
+            
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 const save = JSON.parse(localStorage.getItem(key));
@@ -177,32 +179,34 @@ static updateSaveInventory(inventory) {
             let selectedHeading = selectedSlot.querySelector('h3');
             selectedSlot.style.backgroundColor = 'var(--selected-button)';
             selectedHeading.style.backgroundColor = 'var(--selected-button)';
-              
+            
             Savefiles.loadSavefile();
         });
     });
-} */
+} 
 static loadedPets = []; 
 static loadSavefile() {
   let save = Savefiles.getSelectedSave();
+  const container = document.querySelector('.pets');
+  container.innerHTML = '';
   const pets = document.querySelectorAll('.pet');
    pets.forEach(pet => {
       pet.remove();
   })
-  Savefiles.loadedPets.forEach(pet =>
+
+  inventory.forEach(pet =>
     pet.clearIntervals()
   )
-  if (save.inventory.length === 0) {
-    Savefiles.loadedPets = []
-  }
-  console.log(save.inventory)
+  
+  console.log(save.inventory);
+
     for (let i = 0; i < save.inventory.length; i++) {
       const pet = new Pet(save.inventory[i].name, save.inventory[i].petType)
       pet.setUpPet();
-      Savefiles.loadedPets.push(pet);
-      console.log(Savefiles.loadedPets)
+      inventory.push(pet);
+      console.log(inventory);
+      console.log(localStorage);
   } 
-   
 }  
 
 static getSelectedSave() {
@@ -221,7 +225,7 @@ static highlightSelectedSave() {
   slot.style.backgroundColor = 'var(--selected-button)'
   heading.style.backgroundColor = 'var(--selected-button)'
 }
-/* static showSaveFilesPopUp() {
+static showSaveFilesPopUp() {
 const btn = document.querySelector(".nav__saves");
 const container = document.querySelector(".pets");
 btn.addEventListener("click", function () {
@@ -250,5 +254,5 @@ const popupHTML = `<div class='savefiles popup'>
     Savefiles.switchSavefile()
     Savefiles.highlightSelectedSave();
 });
-} */
+} 
 }

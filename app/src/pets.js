@@ -23,7 +23,7 @@ export class Pet {
                 self.updatePetStatus();
             }
             }   
-            , 500); 
+            , 1000); 
             //in ms
     }
     getRandomFoodPosition() {
@@ -160,7 +160,7 @@ export class Pet {
         let self = this;
         if (self.healthInterval) return; 
         
-        self.healthInterval = setInterval(function() {
+        this.healthInterval = setInterval(function() {
             if (self.currentHunger === 0) {
                 self.currentHealth--;
                 self.updatePetStatus()
@@ -210,6 +210,7 @@ export class Pet {
             <h2>A pet has died :( </h2><button class='leave'>X</button>
             </div>`)
             initExitPopup()
+
          }
         else if (this.currentHealth < 5) {
             this.status = 'sad';
@@ -252,14 +253,12 @@ export class Pet {
         container.insertAdjacentHTML('beforeend', html);
     }
     clearIntervals() {
-        if (this.healthInterval) {
-            clearInterval(this.healthInterval);
-            this.healthInterval = null;
-        }
-        if (this.hungerInterval) {
-            clearInterval(this.hungerInterval);
-            this.hungerInterval = null;
-        }
+        console.log('cleared incerementsd')
+        
+        clearInterval(this.healthInterval);
+        
+        clearInterval(this.hungerInterval);
+           
     }
     
     setUpPet() {
