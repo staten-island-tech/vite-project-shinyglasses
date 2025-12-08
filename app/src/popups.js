@@ -1,7 +1,7 @@
 import {initExitPopup,preventMultiplePopups,changeSelectedButtonCSS} from "./misc";
 import { Pet } from "./pets";
 
-export let inventory = [];
+export let tempInventory = [];
 
 export function changeTheme(btns) {
   btns.forEach((btn) =>
@@ -90,13 +90,21 @@ export function shop() {
           <button class='leave'>X</button>
           </div>`)
           initExitPopup()
-      } 
+      } if (checkIfNoPetType(type)) {
+          const area = document.querySelector('.pets');
+          area.insertAdjacentHTML('afterbegin', 
+            `<div class='notype popup'>
+          <h2>No Type Selected. Please select a pet type</h2>
+          <button class='leave'>X</button>
+          </div>`)
+          initExitPopup();
+        }
       else {
        const pet = new Pet(inputValue, type);
         pet.setUpPet();
-      inventory.push(pet);
-      console.log(inventory)
-      Savefiles.updateSaveInventory(inventory);
+      tempInventory.push(pet)
+      console.log(tempInventory)
+      Savefiles.updateSaveInventory(tempInventory);
       console.log(localStorage) 
        
       }
@@ -104,9 +112,7 @@ export function shop() {
   });
 }
 function checkifNoPetName(name) {
-  if (name === '') {
-    return true
-  }
+  if (name === '') return true
 }
 function checkIfPetNameTaken(name) {
   let save = Savefiles.getSelectedSave();
@@ -118,6 +124,9 @@ function checkIfPetNameTaken(name) {
   } 
   return false
   
+}
+function checkIfNoPetType(type) {
+  if (type === '') return true
 }
 export class Savefiles {
 static createSavefile(inventory, theme, name, active) {
@@ -145,7 +154,7 @@ static updateSaveInventory(inventory) {
     }
   
   let save = Savefiles.getSelectedSave();
-  save.inventory = inventory;
+  save.inventory = tempInventory;
   localStorage.setItem(`save__${num}`, JSON.stringify(save));
   console.log(localStorage)
 }
@@ -156,7 +165,10 @@ static switchSavefile() {
         btn.addEventListener('click', function() {
             const slot = btn.closest('.savefiles__slot');
             const name = slot.getAttribute('data-title');
-            
+            let save = Savefiles.getSelectedSave();
+
+            if (name === save.name) return;
+          
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
                 const save = JSON.parse(localStorage.getItem(key));
@@ -180,12 +192,15 @@ static switchSavefile() {
             selectedSlot.style.backgroundColor = 'var(--selected-button)';
             selectedHeading.style.backgroundColor = 'var(--selected-button)';
             
+            console.log(name, save.name);
+
             Savefiles.loadSavefile();
+            
         });
     });
 } 
-static loadedPets = []; 
 static loadSavefile() {
+  
   let save = Savefiles.getSelectedSave();
   const container = document.querySelector('.pets');
   container.innerHTML = '';
@@ -194,17 +209,16 @@ static loadSavefile() {
       pet.remove();
   })
 
-  inventory.forEach(pet =>
+  tempInventory.forEach(pet =>
     pet.clearIntervals()
   )
+  tempInventory = [];
   
-  console.log(save.inventory);
-
     for (let i = 0; i < save.inventory.length; i++) {
       const pet = new Pet(save.inventory[i].name, save.inventory[i].petType)
       pet.setUpPet();
-      inventory.push(pet);
-      console.log(inventory);
+      tempInventory.push(pet);
+      console.log(tempInventory);
       console.log(localStorage);
   } 
 }  

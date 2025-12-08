@@ -11,11 +11,11 @@
   --dark-secondary: rgb(129, 140, 248);
   --dark-text: rgb(237, 242, 247);
   --dark-button: rgb(76, 86, 106);
-  --dark-primary: rgb(6, 16, 86);
-  --dark-border: rgb(95, 94, 94);
-  --dark-background: rgb(17, 24, 39);
-  --dark-card: rgb(31, 41, 55);
-  --dark-selected-button: rgb(63, 71, 88);
+  --dark-primary: rgb(53, 25, 120);
+  --dark-border: rgb(0, 0, 0);
+  --dark-background: rgb(12, 17, 27);
+  --dark-card: rgb(40, 43, 47);
+  --dark-selected-button: rgb(34, 30, 30);
 
   --strawberry-secondary: rgb(213, 63, 63);
   --strawberry-text: rgb(44, 22, 26);
@@ -110,6 +110,27 @@ button {
   border-radius: 8px;
   background-color: var(--button);
   border: 0;
+}
+
+.notype {
+  width: 30vw;
+  height: 10vh;
+  position: fixed;
+  z-index: 10;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--card);
+  display: flex;
+  justify-content: space-between;
+}
+.notype h2 {
+  background-color: var(--card);
+  margin: auto;
+  margin-left: 2vw;
 }
 .dead {
   width: 20vw;
@@ -240,7 +261,7 @@ button {
   justify-content: flex-end;
 }
 .themes__top .leave {
-  height: 4vh;
+  height: 5vh;
   position: absolute;
   display: flex;
 }
@@ -485,7 +506,7 @@ header {
 }
 .shop {
   width: 20vw;
-  height: 40vh;
+  height: 45vh;
   position: fixed;
   z-index: 10;
   top: 35%;

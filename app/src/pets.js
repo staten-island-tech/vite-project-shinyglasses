@@ -1,5 +1,5 @@
 import { initExitPopup, preventMultiplePopups, checkCollision } from "./misc";
-import { Savefiles, inventory } from "./popups";
+import { Savefiles, tempInventory } from "./popups";
 
 export class Pet {
     constructor(name, type) {
@@ -203,7 +203,7 @@ export class Pet {
             this.status = 'dead';
             console.log('dead')
             petContainer.remove();
-            Savefiles.updateSaveInventory(inventory);
+            Savefiles.updateSaveInventory(tempInventory);
             const container = document.querySelector('.pets');
             container.insertAdjacentHTML('beforeend', 
             `<div class='dead popup'>
@@ -256,7 +256,6 @@ export class Pet {
         console.log('cleared incerementsd')
         
         clearInterval(this.healthInterval);
-        
         clearInterval(this.hungerInterval);
            
     }
