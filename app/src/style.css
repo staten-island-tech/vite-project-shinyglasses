@@ -111,7 +111,29 @@ button {
   background-color: var(--button);
   border: 0;
 }
-
+.dead {
+  width: 20vw;
+  height: 10vh;
+  position: fixed;
+  z-index: 10;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--card);
+  display: flex;
+  justify-content: space-between;
+}
+.dead h2 {
+  background-color: var(--card);
+  margin: auto;
+}
+.hunger .leave {
+  width: 2vw;
+  height: 5vh;
+} 
 .pets {
   display: flex;
   flex-direction: row;
@@ -320,6 +342,7 @@ button {
   margin: 2vh auto;
   display: flex;
   justify-content: center;
+  background-color: var(--card);
 }
 .hunger .leave {
   width: 2vw;

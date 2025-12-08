@@ -22,7 +22,7 @@ export class Pet {
                 self.updatePetStatus();
             }
             }   
-            , 1000); 
+            , 500); 
             //in ms
     }
     getRandomFoodPosition() {
@@ -31,9 +31,7 @@ export class Pet {
     const pet = document.querySelector('.pet__img');
     const foodSize = 32; // in px
 
-    const oldFood = container.querySelectorAll('.food');
-    oldFood.forEach(f => f.remove());
-
+    if (!container) return;
     const xMax = container.clientWidth - foodSize;
     const yMax = container.clientHeight - foodSize - movementBar.clientHeight;
 
@@ -168,14 +166,6 @@ export class Pet {
             }
         }, 2000) 
         console.log("interval started for", self.name);
-
-    }
-        
-    increasePetAffection() {
-
-    }
-    decreasePetAffection() {
-        
     }
     getPetImage() {
     //if i add pets besides dogs i need to change 
@@ -187,33 +177,58 @@ export class Pet {
         'happy': 'happy_'
     }
     let imgName = array[this.status];
+    console.log(this.petType)
     imgName += `${this.petType}.png`
     return imgName;
     }
     updatePetStatus() {
-        const pet = document.querySelector('.pet')
-        if (this.currentHealth < 5) {
+    
+    const names = document.querySelectorAll('.name');
+    let petContainer = null;
+    
+    names.forEach(name => {
+        if (name.textContent === this.name) {
+            petContainer = name.closest('.pet');
+        }
+    });
+    
+    if (!petContainer) return;
+    
+    //i have the img classes named inconsistenly
+    let pet = petContainer.querySelector('.pet__image') || petContainer.querySelector('.pet__img');
+    
+    if (pet) {
+        if (this.currentHealth === 0) {
+            this.status = 'dead';
+            console.log('dead')
+            petContainer.remove();
+        
+            const container = document.querySelector('.pets');
+            container.insertAdjacentHTML('beforeend', 
+            `<div class='dead popup'>
+            <h2>A pet has died :( </h2><button class='leave'>X</button>
+            </div>`)
+            initExitPopup()
+         }
+        else if (this.currentHealth < 5) {
             this.status = 'sad';
-            pet.src = 'sad_dog.png';
+            pet.src = `sad_${this.petType}.png`;
         }
         else if (this.currentHunger < 5) {
             this.status = 'hurt'
-            pet.src = 'hurt_dog.png'
-        }
-        const names = document.querySelectorAll('.name');
-        let container = null;
-        names.forEach(name => {
-            if (name.textContent === this.name) {
-                container = name.closest('.pet').querySelector('.pet__status');
-            }
-        });
-        if (!container) return;
-        container.innerHTML = '';
-        container.insertAdjacentHTML('beforeend', `<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
-                <h3>Affection: ${this.currentAffection}/${this.maxAffectionLevel}</h3>
-                <h3>Health: ${this.currentHealth}/${this.maxHealthLevel}</h3>
-              `);
-        }
+            pet.src = `hurt_${this.petType}.png`;
+        } 
+    }
+    
+    // Update status display
+    const statusContainer = petContainer.querySelector('.pet__status');
+    if (!statusContainer) return;
+    statusContainer.innerHTML = '';
+    statusContainer.insertAdjacentHTML('beforeend', `<h3>Hunger: ${this.currentHunger}/${this.maxHungerLevel} </h3>
+            <h3>Affection: ${this.currentAffection}/${this.maxAffectionLevel}</h3>
+            <h3>Health: ${this.currentHealth}/${this.maxHealthLevel}</h3>
+          `);
+}
     showPet() {
         let imgName = this.getPetImage();
         let html = `<div class='pet'>
@@ -252,5 +267,9 @@ export class Pet {
         this.decreasePetHunger();
         this.decreasePetHealth();
         this.getRandomFoodPosition();
+        this.die()
+    }
+    die() {
+      
     }
 }   

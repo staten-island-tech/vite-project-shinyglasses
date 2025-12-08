@@ -66,6 +66,7 @@ export function shop() {
     btns.forEach((btn) =>
       btn.addEventListener("click", function (event) {
         type = event.target.textContent.toLowerCase();
+        
         changeSelectedButtonCSS(btns, btn);
       })
     );
@@ -92,12 +93,12 @@ export function shop() {
       } 
       else {
        const pet = new Pet(inputValue, type);
+        pet.setUpPet();
       inventory.push(pet);
       
       Savefiles.updateSaveInventory(inventory);
-      
       console.log(localStorage) 
-      pet.setUpPet(); 
+       
       }
     });
   });
@@ -147,7 +148,7 @@ static updateSaveInventory(inventory) {
   save.inventory = inventory;
   localStorage.setItem(`save__${num}`, JSON.stringify(save))
 }
-static switchSavefile() {
+/* static switchSavefile() {
     const btns = document.querySelectorAll('.savefile__select');
     Savefiles.highlightSelectedSave();  
     btns.forEach(btn => {
@@ -180,7 +181,7 @@ static switchSavefile() {
             Savefiles.loadSavefile();
         });
     });
-}
+} */
 static loadedPets = []; 
 static loadSavefile() {
   let save = Savefiles.getSelectedSave();
@@ -220,7 +221,7 @@ static highlightSelectedSave() {
   slot.style.backgroundColor = 'var(--selected-button)'
   heading.style.backgroundColor = 'var(--selected-button)'
 }
-static showSaveFilesPopUp() {
+/* static showSaveFilesPopUp() {
 const btn = document.querySelector(".nav__saves");
 const container = document.querySelector(".pets");
 btn.addEventListener("click", function () {
@@ -249,5 +250,5 @@ const popupHTML = `<div class='savefiles popup'>
     Savefiles.switchSavefile()
     Savefiles.highlightSelectedSave();
 });
-}
+} */
 }

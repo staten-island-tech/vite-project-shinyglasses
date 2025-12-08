@@ -8,12 +8,12 @@ import { initExitPopup, preventMultiplePopups } from './misc.js';
 
 if (localStorage.length === 0) {
 Savefiles.createSavefile([], 'light', 'one', true);
-Savefiles.createSavefile([], 'light', 'two', false);
-Savefiles.createSavefile([], 'light', 'three', false);
+/* Savefiles.createSavefile([], 'light', 'two', false);
+Savefiles.createSavefile([], 'light', 'three', false); */
 }
 
 console.log(localStorage)
-Savefiles.showSaveFilesPopUp();
+//Savefiles.showSaveFilesPopUp();
 shop();
 showThemesPopup();
 Savefiles.loadSavefile();
