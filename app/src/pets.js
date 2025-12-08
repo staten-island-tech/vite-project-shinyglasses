@@ -21,10 +21,11 @@ export class Pet {
                 self.updatePetStatus();
             }
             }   
-            , 1000); 
+            , 500); 
             //in ms
     }
     getRandomFoodPosition() {
+        console.log('food pos')
     const container = document.querySelector(".feed");
     const movementBar = document.querySelector('.move');
     const pet = document.querySelector('.pet__img');
@@ -63,15 +64,16 @@ export class Pet {
 
     increasePetHunger() {
         let self = this;
+        let btn
         const btns = document.querySelectorAll('.feed_pet');
-        
-        btns.forEach(btn => {
-            btn.addEventListener('click', function() {
-        const container = document.querySelector('.pet');
+        btns.forEach(el => {
+            console.log(el)
+            if (this.name === el.dataset.name) {btn = el}
+        })
+        btn.addEventListener('click', function() {
+        const container = document.querySelector('.pets');
 
         const petImg = self.getPetImage();
-        console.log(self.currentHunger);
-
         const popupHTML = `<div class='feed popup'>
                 <button class='leave'>X</button>   
                 <img class='pet__img' src='${petImg}'>
@@ -82,20 +84,17 @@ export class Pet {
                     <button id='right'>Right</button>
                 </div>
             </div>`;
-
-        preventMultiplePopups(popupHTML, container);
-
-        self.getRandomFoodPosition();
-        self.currentHunger += 1;
+            preventMultiplePopups(popupHTML, container);
+            self.getRandomFoodPosition();  
+            self.petMovement();
+            initExitPopup();
+        self.currentHunger++;
         self.updatePetStatus();
-        self.petMovement();
-        initExitPopup();
-        
-    });
-});
-    }
-
     
+        })
+        
+        
+    }
     petMovement() {
     const btnContainer = document.querySelector('.move');
     const feedContainer = document.querySelector('.feed');
@@ -163,7 +162,7 @@ export class Pet {
                 self.currentHealth--;
                 self.updatePetStatus()
             }
-        }, 2000) 
+        }, 500) 
         console.log("interval started for", self.name);
     }
     getPetImage() {
@@ -199,8 +198,10 @@ export class Pet {
     if (pet) {
         if (this.currentHealth === 0) {
             this.status = 'dead';
-            console.log('dead')
             petContainer.remove();
+            let pet = tempInventory.indexOf(this)   
+            tempInventory.splice(pet, 1);
+
             Savefiles.updateSaveInventory(tempInventory);
             const container = document.querySelector('.pets');
             container.insertAdjacentHTML('beforeend', 
@@ -239,7 +240,7 @@ export class Pet {
                 <h3>Health: <b>${this.currentHealth} </b>/${this.maxHealthLevel}</h3>
             </div>
             <div class='pet__buttons'>
-                <button class='feed_pet'>Feed</button>
+                <button class='feed_pet' data-name='${this.name}'>Feed</button>
             </div>
             </div>
         </div>    
