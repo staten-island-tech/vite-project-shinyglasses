@@ -493,6 +493,7 @@ header {
   border: 2px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
+  border: 2px solid var(--border)
 }
 
 .shop h2 {
@@ -503,10 +504,10 @@ header {
   justify-content: center;
 }
 .shop__item {
-  font-weight: 700;
   margin: auto;
   width: 10vw;
   height: 5vh;
+  border: 2px solid var(--border);
 }
 .shop__items {
   display: flex;
@@ -528,6 +529,8 @@ header {
   text-align: center;
   margin: auto;
   margin-top: 3vh;
+  border: 2px solid var(--border);
+  font-weight: 700;
 }
 .shop__top .leave {
   position: absolute;
@@ -541,6 +544,7 @@ header {
   width: 90%;
   margin: auto;
   gap: 1vh;
+
 }
 
 .shop form label {

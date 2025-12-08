@@ -1,7 +1,7 @@
 import {initExitPopup,preventMultiplePopups,changeSelectedButtonCSS} from "./misc";
 import { Pet } from "./pets";
 
-const inventory = [];
+export const inventory = [];
 
 export function changeTheme(btns) {
   btns.forEach((btn) =>
