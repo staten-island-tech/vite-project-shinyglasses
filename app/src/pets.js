@@ -21,7 +21,7 @@ export class Pet {
                 self.updatePetStatus();
             }
             }   
-            , 500); 
+            , 50000); 
             //in ms
     }
     getRandomFoodPosition() {

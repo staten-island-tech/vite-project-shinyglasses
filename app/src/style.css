@@ -556,6 +556,7 @@ header {
   margin-top: 3vh;
   border: 2px solid var(--border);
   font-weight: 700;
+  background-color: var(--primary);
 }
 .shop__top .leave {
   position: absolute;
@@ -594,11 +595,26 @@ header {
   .pet {
     width: 90%;
   }
-  .pet__bottom {
-    width: 100px !important;
-  }
   .pet__status {
     gap: 2%;
     width: 100px;
   }
+  .shop {
+    width: 40vw;
+  }
+  .savefiles {
+    width: 40vw;
+  }
+  .savefiles__slot {
+    width: 30vw;
+  }
+  .themes {
+    width: 40vw;
+}
+.pet__bottom {
+  width: 100%;
+}
+.move button {
+  width: 22%;
+  font-size:2rem; ;}
 }

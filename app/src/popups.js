@@ -94,6 +94,7 @@ export function shop() {
           <button class='leave'>X</button>
           </div>`)
           initExitPopup()
+          return;
       } else if (checkifNoPetName(inputValue)) {
         const area  = document.querySelector('.pets')
         area.insertAdjacentHTML('afterbegin', `
@@ -102,6 +103,7 @@ export function shop() {
           <button class='leave'>X</button>
           </div>`)
           initExitPopup()
+          return;
       } if (checkIfNoPetType(type)) {
           const area = document.querySelector('.pets');
           area.insertAdjacentHTML('afterbegin', 
@@ -110,6 +112,7 @@ export function shop() {
           <button class='leave'>X</button>
           </div>`)
           initExitPopup();
+          return;
         }
       else {
        const pet = new Pet(inputValue, type);
