@@ -21,45 +21,44 @@ export class Pet {
                 self.updatePetStatus();
             }
             }   
-            , 50000); 
+            , 3000); 
             //in ms
     }
     getRandomFoodPosition() {
-        console.log('food pos')
-    const container = document.querySelector(".feed");
-    const movementBar = document.querySelector('.move');
-    const pet = document.querySelector('.pet__img');
-    const foodSize = 32; // in px
+        const container = document.querySelector(".feed");
+        const movementBar = document.querySelector('.move');
+        const pet = document.querySelector('.pet__img');
+        const foodSize = 32; // in px
 
-    if (!container) return;
-    const xMax = container.clientWidth - foodSize;
-    const yMax = container.clientHeight - foodSize - movementBar.clientHeight;
+        if (!container) return;
+        const xMax = container.clientWidth - foodSize;
+        const yMax = container.clientHeight - foodSize - movementBar.clientHeight;
+        console.log(xMax, yMax);
+        let inRightPosition = false;
+        let x, y;
 
-    let inRightPosition = false;
-    let x, y;
+        while (!inRightPosition) {
+            x = Math.floor(Math.random() * (xMax));
+            y = Math.floor(Math.random() * (yMax));
+            //mins not needed bc am inserting this into the food container 
+            // so its not like food will spawn before the container
 
-    while (!inRightPosition) {
-        x = Math.floor(Math.random() * (xMax));
-        y = Math.floor(Math.random() * (yMax));
-        //mins not needed bc am inserting this into the food container 
-        // so its not like food will spawn before the container
+            const tempFood = document.createElement("div");
+            tempFood.style.position = "absolute";
+            tempFood.style.width = `${foodSize}px`;
+            tempFood.style.height = `${foodSize}px`;
+            tempFood.style.top = `${y}px`;
+            tempFood.style.left = `${x}px`;
 
-        const tempFood = document.createElement("div");
-        tempFood.style.position = "absolute";
-        tempFood.style.width = `${foodSize}px`;
-        tempFood.style.height = `${foodSize}px`;
-        tempFood.style.top = `${y}px`;
-        tempFood.style.left = `${x}px`;
-
-        if (!checkCollision(tempFood, pet)) {
-            inRightPosition = true;
+            if (!checkCollision(tempFood, pet)) {
+                inRightPosition = true;
+            }
         }
-    }
 
-    container.insertAdjacentHTML(
-        'afterbegin',
-        `<img class='food' src='food.png' style="position:absolute; top:${y}px; left:${x}px;">`
-    );
+        container.insertAdjacentHTML(
+            'afterbegin',
+            `<img class='food' src='food.png' style="position:absolute; top:${y}px; left:${x}px;">`
+        );
 }
 
     increasePetHunger() {
@@ -67,7 +66,6 @@ export class Pet {
         let btn
         const btns = document.querySelectorAll('.feed_pet');
         btns.forEach(el => {
-            console.log(el)
             if (this.name === el.dataset.name) {btn = el}
         })
         btn.addEventListener('click', function() {
@@ -162,8 +160,7 @@ export class Pet {
                 self.currentHealth--;
                 self.updatePetStatus()
             }
-        }, 500) 
-        console.log("interval started for", self.name);
+        }, 2000) 
     }
     getPetImage() {
     //if i add pets besides dogs i need to change 
@@ -175,7 +172,6 @@ export class Pet {
         'happy': 'happy_'
     }
     let imgName = array[this.status];
-    console.log(this.petType)
     imgName += `${this.petType}.png`
     return imgName;
     }
@@ -249,7 +245,6 @@ export class Pet {
         container.insertAdjacentHTML('beforeend', html);
     }
     clearIntervals() {
-        console.log('cleared incerementsd')
         
         clearInterval(this.healthInterval);
         clearInterval(this.hungerInterval);

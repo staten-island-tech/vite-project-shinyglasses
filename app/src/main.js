@@ -12,7 +12,7 @@ Savefiles.createSavefile([], 'light', 'two', false);
 Savefiles.createSavefile([], 'light', 'three', false); 
 }
 
-console.log(localStorage)
+
 Savefiles.showSaveFilesPopUp();
 shop();
 showThemesPopup();

@@ -11,11 +11,8 @@
 - dark and light mode (maybe AN ANGRY dark and light mode if you neglect the pet??)
 - save files - store the pet data + default color scheme in local storage
 
-to do 
-- media query !!! priority 
+extra stuff to do for funsies if i return to this
 - if multiple pets die in quick succession do 'oh no x amount of pets have died'
-- BEFORE BRINGING TO NETLIFY CHANGE THE HUNGER INTERVAL !!!!!!prirority
 - every xyz sec, save the stats of the pets to saves
 - can condense the css -> give nav bar pop ups their own class, same for error and death message pop ups
-- primary button css -> basically only for the buy btn
 - fix my weird css classes -> i tried to follow bem but there's some classes w/ only 1 _ instead of 2
